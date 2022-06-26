@@ -20,10 +20,20 @@ void print_right_aligned_pyramid_ascii_art(char ch, int height){
    //  ##
    // ###
    //####
+
+    // creating a copy in order to mutate value for right alignment
+    int space_iter = height - 2;
+   // iterating per row
     for(int i = 1; i <= height; i++){
+        // append k iterations of ' ' prior to char to get right alignment
+        for(int k = space_iter; k >= 0 ; k--){
+            printf("%c", ' ');
+        }
+        // appending j iterations of char per row
         for(int j = 0; j < i; j++){
             printf("%c", ch);
         }
         printf("\n");
+        space_iter--;
     }
 }
