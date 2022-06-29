@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="This%20is%20check50_files/bootstrap.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>This is check50.</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+
+            <h1>check50</h1>
+            <h2>cs50/problems/2022/x/cash</h2>
+            <hr>
+              
+                  
+                      <h3 style="color:green">:) cash.c exists</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          checking that cash.c exists...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) cash.c compiles</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running clang cash.c -o cash -std=c11 -ggdb -lm -lcs50...
+                                          <br>
+                                      
+                                          running clang cash_test.c -o cash_test -std=c11 -ggdb -lm -lcs50...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) get_cents returns integer number of cents</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 0...
+                                          <br>
+                                      
+                                          sending input 100...
+                                          <br>
+                                      
+                                          checking for output "100"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) get_cents rejects negative input</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 0...
+                                          <br>
+                                      
+                                          sending input -10...
+                                          <br>
+                                      
+                                          checking that input was rejected...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) get_cents rejects a non-numeric input of "foo" </h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 0...
+                                          <br>
+                                      
+                                          sending input foo...
+                                          <br>
+                                      
+                                          checking that input was rejected...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) calculate_quarters returns 2 when input is 50</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 1...
+                                          <br>
+                                      
+                                          checking for output "2"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) calculate_quarters returns 1 when input is 42</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 2...
+                                          <br>
+                                      
+                                          checking for output "1"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) calculate_dimes returns 1 when input is 10</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 3...
+                                          <br>
+                                      
+                                          checking for output "1"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) calculate_dimes returns 1 when input is 15</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 4...
+                                          <br>
+                                      
+                                          checking for output "1"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) calculate_dimes returns 7 when input is 73</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 8...
+                                          <br>
+                                      
+                                          checking for output "7"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) calculate_nickels returns 1 when input is 5</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 5...
+                                          <br>
+                                      
+                                          checking for output "1"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) calculate_nickels returns 5 when input is 28</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 6...
+                                          <br>
+                                      
+                                          checking for output "5"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) calculate_pennies returns 4 when input is 4</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash_test 7...
+                                          <br>
+                                      
+                                          checking for output "4"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) input of 41 cents yields output of 4 coins</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash...
+                                          <br>
+                                      
+                                          sending input 41...
+                                          <br>
+                                      
+                                          checking for output "4\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) input of 160 cents yields output of 7 coins</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./cash...
+                                          <br>
+                                      
+                                          sending input 160...
+                                          <br>
+                                      
+                                          checking for output "7\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+
+            </div>
+        </div>
+    
+</body></html>
