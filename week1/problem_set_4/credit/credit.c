@@ -20,8 +20,8 @@ string is_valid_credit_card(long digit){
     int sum_of_product_digits; // sum of digits of every other digit multiplied by 2
     int sum2; // sum of other digits
     int cout = 1; // used to validate digit length in addition to counting every other digit
-
-    //TODO: add logic to obtain initial digits to identify which CC issuer
+    int issuer_identifier; //leading 1-2 digits to determine issuer type
+    //TODO: account for issuer_identifier in loop!!!
     while(digit > 0){
         int rightmost_digit = digit % 10;
 
@@ -51,10 +51,21 @@ string is_valid_credit_card(long digit){
         cout++;
     }
     int final_sum = sum_of_product_digits + sum2;
-    if(cout != 15 || cout != 16 || final_sum % 10 != 0){
+    if(!(cout >= 15 && cout <= 16)){
         return "INVALID\n";
     }
+    else if (final_sum % 10 == 0){
+        if(issuer_identifier == 34 || issuer_identifier == 37){
+            return "AMEX\n";
+        }
+        else if(issuer_identifier >= 51 && issuer_identifier <= 55){
+            return "MASTERCARD\n";
+        }
+        else if(issuer_identifier == 4){
+            return "VISA\n";
+        }
+    }
     else{
-        //TODO: 
+        return "INVALID\n";
     }
 }
