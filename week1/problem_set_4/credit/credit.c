@@ -20,8 +20,8 @@ string is_valid_credit_card(long digit){
     int sum_of_product_digits; // sum of digits of every other digit multiplied by 2
     int sum2; // sum of other digits
     int cout = 1; // used to validate digit length in addition to counting every other digit
-    int issuer_identifier; //leading 1-2 digits to determine issuer type
-    //TODO: account for issuer_identifier in loop!!!
+    string network_identifier;
+
     while(digit > 0){
         int rightmost_digit = digit % 10;
 
@@ -45,27 +45,36 @@ string is_valid_credit_card(long digit){
         else{
             sum2 += rightmost_digit;
         }
+        
+        // case logic indicating cc number becomes a 2 digit value
+        // we can omit this check at the cost of performance as we will have 14 cycles where nested logic will be non-applicable or false 
+        if(digit < 100){
+            if(digit == 34 || digit == 37){
+                network_identifier = "AMEX\n";
+        }
+            else if(digit >= 51 && digit <= 55){
+                network_identifier = "MASTERCARD\n";
+        }
+            else if(digit == 4){
+                network_identifier = "VISA\n";
+            }
+        } 
 
         digit -= rightmost_digit; // subtracting digit to zero out rightmost digit
         digit /= 10; // 'pop off' that trailing zero
         cout++;
     }
-    int final_sum = sum_of_product_digits + sum2;
+    int checksum = sum_of_product_digits + sum2;
+
+    // this check should be at the beginning of the function but we have no way yet of counting length of digits
+    // unless digits came in as a string, we could've counted it's length and proceed with atoi() to perform calculate checksum 
     if(!(cout >= 15 && cout <= 16)){
         return "INVALID\n";
     }
-    else if (final_sum % 10 == 0){
-        if(issuer_identifier == 34 || issuer_identifier == 37){
-            return "AMEX\n";
-        }
-        else if(issuer_identifier >= 51 && issuer_identifier <= 55){
-            return "MASTERCARD\n";
-        }
-        else if(issuer_identifier == 4){
-            return "VISA\n";
-        }
-    }
     else{
+        if(checksum % 10 == 0){
+            return network_identifier;
+        }
         return "INVALID\n";
     }
 }
