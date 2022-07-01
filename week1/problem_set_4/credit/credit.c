@@ -17,8 +17,8 @@ string is_valid_credit_card(long digit){
     // MASTERCARD: 16 digit numbers starting with 51, 52, 53, 54, 55
     // VISA: 13 and 16 digit numbers starting with 4
 
-    int sum_of_product_digits; // sum of digits of every other digit multiplied by 2
-    int sum2; // sum of other digits
+    int sum_of_product_digits = 0; // sum of digits of every other digit multiplied by 2
+    int sum2 = 0; // sum of other digits
     int cout = 1; // used to validate digit length in addition to counting every other digit
     string network_identifier;
 
