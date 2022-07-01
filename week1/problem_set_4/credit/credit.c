@@ -6,7 +6,7 @@ string is_valid_credit_card(long digit);
 int main(void) 
 {
     long digit = get_long("Number: ");
-    printf("%s", is_valid_credit_card(4222222222222));
+    printf("%s", is_valid_credit_card(digit));
     
 }
 
@@ -20,7 +20,7 @@ string is_valid_credit_card(long digit){
     int sum_of_product_digits = 0; // sum of digits of every other digit multiplied by 2
     int sum2 = 0; // sum of other digits
     int cout = 1; // used to validate digit length in addition to counting every other digit
-    string network_identifier;
+    string network_identifier = "INVALID\n";
 
     while(digit > 0){
         int rightmost_digit = digit % 10;
