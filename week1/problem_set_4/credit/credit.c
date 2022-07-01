@@ -6,7 +6,7 @@ string is_valid_credit_card(long digit);
 int main(void) 
 {
     long digit = get_long("Number: ");
-    printf("%s", is_valid_credit_card(digit));
+    printf("%s", is_valid_credit_card(4222222222222));
     
 }
 
@@ -69,7 +69,7 @@ string is_valid_credit_card(long digit){
     // this check should be at the beginning of the function but we have no way yet of counting length of digits
     // unless digits came in as a string, we could've counted it's length and proceed with atoi() to perform calculate checksum
 
-    if(!(cout >= 16 && cout <= 17)){ // given that cout starts at 1, need to +1 on lower and upper bound to prevent OBOE (Off-By-One-Error)
+    if(!(cout >= 14 && cout <= 17)){ // given that cout starts at 1, need to +1 on lower and upper bound to prevent OBOE (Off-By-One-Error)
         return "INVALID\n";
     }
     else{
