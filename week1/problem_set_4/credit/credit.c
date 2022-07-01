@@ -64,11 +64,12 @@ string is_valid_credit_card(long digit){
         digit /= 10; // 'pop off' that trailing zero
         cout++;
     }
-    int checksum = sum_of_product_digits + sum2;
+       int checksum = sum_of_product_digits + sum2;
 
     // this check should be at the beginning of the function but we have no way yet of counting length of digits
-    // unless digits came in as a string, we could've counted it's length and proceed with atoi() to perform calculate checksum 
-    if(!(cout >= 15 && cout <= 16)){
+    // unless digits came in as a string, we could've counted it's length and proceed with atoi() to perform calculate checksum
+
+    if(!(cout >= 16 && cout <= 17)){ // given that cout starts at 1, need to +1 on lower and upper bound to prevent OBOE (Off-By-One-Error)
         return "INVALID\n";
     }
     else{
