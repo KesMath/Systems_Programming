@@ -31,6 +31,20 @@ int main(void)
         printf("Tie!\n");
     }
 }
+// DESIGN approach (Sub-Optimal):
+// We can create an alphabet array or (char array) where 0th index = 'A', 1st index = B, etc
+// Then we can iterate through this array and find index of the target char in
+// and break out of loop when we get that index. Then we can use POINTS[i] to get
+// necessary scrabble point mapping for that car and add results to accumulator and repeat!
+
+// https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html 
+// Design approach (BEST):
+// We realize that the ASCII Chart preserves alphabetical ordering:
+// a = 97, b = 98, c = 99, A = 65, B = 66, C = 67 , etc.
+// Thus for lower case chars, we can subtract 97 and for upper case chars,
+// we can minus 65 to get this ordering within the bounds of 0 <= index <= 26!
+// Afterwards, the problem is straightforward as we can use POINTS[index]
+// to get necessary scrabble point mapping for each char and add results to an accumulator!
 
 int compute_score(string word)
 {
