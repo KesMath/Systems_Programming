@@ -5,6 +5,8 @@
 
 // Points assigned to each letter of the alphabet
 int POINTS[] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+const int ASCII_UPPER_CASE_ONSET = 65;
+const int ASCII_LOWER_CASE_ONSET = 97;
 
 int compute_score(string word);
 
@@ -53,10 +55,10 @@ int compute_score(string word)
     for(int i = 0; i < word_length; i++){
 
         if(islower(word[i])){
-            score += POINTS[(int) word[i] - 97];
+            score += POINTS[(int) word[i] - ASCII_LOWER_CASE_ONSET];
         }
         else if(isupper(word[i])){
-            score += POINTS[(int) word[i] - 65];
+            score += POINTS[(int) word[i] - ASCII_UPPER_CASE_ONSET];
         }
         else{
             //no need to add zero for non letter chars ... just continue!
