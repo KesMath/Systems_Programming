@@ -18,14 +18,14 @@ int main(void)
     int score1 = compute_score(word1);
     int score2 = compute_score(word2);
 
-    printf("Score 1 %i", score1);
-    printf("Score 2 %i", score2);
+    printf("Score 1 %i\n", score1);
+    printf("Score 2 %i\n", score2);
 
     if(score1 > score2){
         printf("Player 1 wins!\n");
     }
     else if(score1 < score2){
-        printf("Plater 2 wins!\n");
+        printf("Player 2 wins!\n");
     }
     else{
         printf("Tie!\n");
@@ -45,6 +45,7 @@ int compute_score(string word)
             score += POINTS[(int) word[i] - 65];
         }
         else{
+            //no need to add zero for non letter chars ... just continue!
             continue;
         }
     }
