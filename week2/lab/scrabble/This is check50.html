@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="This%20is%20check50_files/bootstrap.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>This is check50.</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+
+            <h1>check50</h1>
+            <h2>cs50/labs/2022/x/scrabble</h2>
+            <hr>
+              
+                  
+                      <h3 style="color:green">:) scrabble.c exists</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          checking that scrabble.c exists...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) scrabble.c compiles</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running clang scrabble.c -o scrabble -std=c11 -ggdb -lm -lcs50...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) handles letter cases correctly</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./scrabble...
+                                          <br>
+                                      
+                                          sending input LETTERCASE...
+                                          <br>
+                                      
+                                          sending input lettercase...
+                                          <br>
+                                      
+                                          checking for output "Tie!"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) handles punctuation correctly</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./scrabble...
+                                          <br>
+                                      
+                                          sending input Punctuation!?!?...
+                                          <br>
+                                      
+                                          sending input punctuation...
+                                          <br>
+                                      
+                                          checking for output "Tie!"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) correctly identifies 'Question?' and 'Question!' as a tie</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./scrabble...
+                                          <br>
+                                      
+                                          sending input Question?...
+                                          <br>
+                                      
+                                          sending input Question!...
+                                          <br>
+                                      
+                                          checking for output "Tie!"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) correctly identifies 'drawing' and 'illustration' as a tie</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./scrabble...
+                                          <br>
+                                      
+                                          sending input drawing...
+                                          <br>
+                                      
+                                          sending input illustration...
+                                          <br>
+                                      
+                                          checking for output "Tie!"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) correctly identifies 'hai!' as winner over 'Oh,'</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./scrabble...
+                                          <br>
+                                      
+                                          sending input Oh,...
+                                          <br>
+                                      
+                                          sending input hai!...
+                                          <br>
+                                      
+                                          checking for output "Player 2 wins!"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) correctly identifies 'COMPUTER' as winner over 'science'</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./scrabble...
+                                          <br>
+                                      
+                                          sending input COMPUTER...
+                                          <br>
+                                      
+                                          sending input science...
+                                          <br>
+                                      
+                                          checking for output "Player 1 wins!"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) correctly identifies 'Scrabble' as winner over 'wiNNeR'</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./scrabble...
+                                          <br>
+                                      
+                                          sending input Scrabble...
+                                          <br>
+                                      
+                                          sending input wiNNeR...
+                                          <br>
+                                      
+                                          checking for output "Player 1 wins!"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) correctly identifies 'pig' as winner over 'dog'</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./scrabble...
+                                          <br>
+                                      
+                                          sending input pig...
+                                          <br>
+                                      
+                                          sending input dog...
+                                          <br>
+                                      
+                                          checking for output "Player 1 wins!"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) correctly identifies 'Skating!' as winner over 'figure?'</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./scrabble...
+                                          <br>
+                                      
+                                          sending input figure?...
+                                          <br>
+                                      
+                                          sending input Skating!...
+                                          <br>
+                                      
+                                          checking for output "Player 2 wins!"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+
+            </div>
+        </div>
+    
+</body></html>
