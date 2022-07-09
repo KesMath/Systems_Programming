@@ -79,6 +79,8 @@ int count_sentences(string text){
 int calculate_grade_level(int letter_count, int sentence_count, int word_count){
     int grade = 0;
     if(word_count > 0){ // protect against DIVISION-BY-Zero
+        // Recall in C, dividing INT/INT causes loss of precision (truncation) if result is a decimal number
+        // Thus, we can cast either the numerator or denominator to preserve precision
         double avg_letters = (letter_count / (double) word_count) * 100;
         printf("avg_letters: %f\n", avg_letters);
         double avg_sentences = (sentence_count / (double) word_count) * 100;
