@@ -23,10 +23,24 @@ int main(int argc, string argv[])
 string get_caesar_cipher(string plaintext, int shift_key){
     int str_len = strlen(plaintext);
     for(int i = 0; i < str_len; i++){
-        //in-place approach
-        //TODO: perform modulo when addition > 26
+        //in-place approach without auxillary arrays which saves 26 bytes * 8 bits = 206 bits of memory!
         if(isalpha(plaintext[i])){
-            plaintext[i] = plaintext[i] + shift_key;
+            if(isupper(plaintext[i])){
+                if(plaintext[i] + shift_key > 90){
+                    plaintext[i] = ((plaintext[i] + shift_key) % 90) + 64;
+                }
+                else{
+                    plaintext[i] = (plaintext[i] + shift_key) % 90;
+                }
+            }
+            else{
+                if(plaintext[i] + shift_key > 122){
+                    plaintext[i] = ((plaintext[i] + shift_key) % 122) + 96;
+                }
+                else{
+                    plaintext[i] = (plaintext[i] + shift_key) % 122;
+                }
+            }
         }
     }
 
