@@ -4,12 +4,12 @@
 #include <ctype.h>
 #include <math.h>
 
-int PERIOD = 46;
-int QUESTION_MARK = 63;
-int EXCLAMATION_POINT = 33;
-float COLEMAN_LIAU_TERM_1 = 0.0588;
-float COLEMAN_LIAU_TERM_2 = 0.296;
-float COLEMAN_LIAU_TERM_3 = 15.8;
+const int PERIOD = 46;
+const int QUESTION_MARK = 63;
+const int EXCLAMATION_POINT = 33;
+const float COLEMAN_LIAU_TERM_1 = 0.0588;
+const float COLEMAN_LIAU_TERM_2 = 0.296;
+const float COLEMAN_LIAU_TERM_3 = 15.8;
 
 bool issentence_punctuation(char c);
 int count_letters(string text);
