@@ -5,15 +5,13 @@
 #include <ctype.h>
 
 string get_caesar_cipher(string plaintext, int shift_key);
-bool is_alpha_str(string text);
 bool is_integer_str(string text);
 
 int main(int argc, string argv[]) 
 {
     if (argc == 2){
         string plaintext = get_string("plaintext: ");
-        //TODO: ensure type checking on argv to ensure it's an integer and convert to integer accordingly
-        if(is_alpha_str(plaintext) && is_integer_str(argv[1])){
+        if(is_integer_str(argv[1])){
             printf("ciphertext: %s\n", get_caesar_cipher(plaintext, atoi(argv[1])));
         }
     }
@@ -27,23 +25,13 @@ string get_caesar_cipher(string plaintext, int shift_key){
     for(int i = 0; i < str_len; i++){
         //in-place approach
         //TODO: perform modulo when addition > 26
-        plaintext[i] = plaintext[i] + shift_key;
+        if(isalpha(plaintext[i])){
+            plaintext[i] = plaintext[i] + shift_key;
+        }
     }
 
     //in-place approach done to save memory so although this is named plaintext, in actuality the result is ciphertext!
     return plaintext;
-}
-
-bool is_alpha_str(string text){
-    bool is_alpha_str = true;
-    int len_str = strlen(text);
-    for (int i = 0; i < len_str; i++){
-        if(!isalpha(text[i])){
-            is_alpha_str = false;
-            break;
-        }
-    }
-    return is_alpha_str;
 }
 
 bool is_integer_str(string text){
