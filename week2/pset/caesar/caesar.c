@@ -4,11 +4,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-const int ASCII_UPPER_CASE_STARTING_BOUNDARY = 64;
-const int ASCII_UPPER_CASE_ENDING_BOUNDARY = 90;
-
-const int ASCII_LOWER_CASE_STARTING_BOUNDARY = 96;
-const int ASCII_LOWER_CASE_ENDING_BOUNDARY = 122;
+const int ASCII_UPPER_CASE_ONSET = 65;
+const int ASCII_LOWER_CASE_ONSET = 97;
+const int ALPHA_WRAPAROUND = 26;
 
 string get_caesar_cipher(string plaintext, int shift_key);
 bool is_only_digits(string text);
@@ -26,37 +24,22 @@ int main(int argc, string argv[])
     return 1;
 }
 
-// Similar approach to their rotate() function
-// but instead of downsizing upper case and lower case to fit into
-// the bounds of [0,25], this approach retains the original ASCII bounds
-// 65 <= uppercase <= 90, 97 <= lowercase <= 122, performs the shift,
-// and uses respective modulo (uppercase bound = 64, lowercase = 96)
-// to generate new uppercase or lowercase cipher
+
 string get_caesar_cipher(string plaintext, int shift_key){
     int str_len = strlen(plaintext);
     for(int i = 0; i < str_len; i++){
         // in-place approach
         if(isalpha(plaintext[i])){
             if(isupper(plaintext[i])){
-                if(plaintext[i] + shift_key > ASCII_UPPER_CASE_ENDING_BOUNDARY){
-                    // adding the ASCII_UPPER_CASE_STARTING_BOUNDARY assures char wraps around into uppercase ascii territory
-                    plaintext[i] = ((plaintext[i] + shift_key) % ASCII_UPPER_CASE_ENDING_BOUNDARY) + ASCII_UPPER_CASE_STARTING_BOUNDARY;
-                }
-                else{
-                    plaintext[i] = (plaintext[i] + shift_key) % ASCII_UPPER_CASE_ENDING_BOUNDARY;
-                }
+                plaintext[i] = (((plaintext[i] - ASCII_UPPER_CASE_ONSET) + shift_key) % ALPHA_WRAPAROUND) + ASCII_UPPER_CASE_ONSET;
+                printf("Plain: %i\n", plaintext[i]);
             }
             else{
-                if(plaintext[i] + shift_key > ASCII_LOWER_CASE_ENDING_BOUNDARY){
-                    plaintext[i] = ((plaintext[i] + shift_key) % ASCII_LOWER_CASE_ENDING_BOUNDARY) + ASCII_LOWER_CASE_STARTING_BOUNDARY;
-                }
-                else{
-                    plaintext[i] = (plaintext[i] + shift_key) % ASCII_LOWER_CASE_ENDING_BOUNDARY;
-                }
+                plaintext[i] = (((plaintext[i] - ASCII_LOWER_CASE_ONSET) + shift_key) % ALPHA_WRAPAROUND) + ASCII_LOWER_CASE_ONSET;
+ 
             }
         }
     }
-
     //in-place approach done to save memory so although this is named plaintext, in actuality the result is ciphertext!
     return plaintext;
 }
