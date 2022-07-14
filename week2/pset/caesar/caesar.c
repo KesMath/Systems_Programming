@@ -4,6 +4,12 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+const int ASCII_UPPER_CASE_LOWER_BOUND = 64;
+const int ASCII_UPPER_CASE_UPPER_BOUND = 90;
+
+const int ASCII_LOWER_CASE_LOWER_BOUND = 96;
+const int ASCII_LOWER_CASE_UPPER_BOUND = 122;
+
 string get_caesar_cipher(string plaintext, int shift_key);
 bool is_integer_str(string text);
 
@@ -26,19 +32,19 @@ string get_caesar_cipher(string plaintext, int shift_key){
         //in-place approach without auxillary arrays which saves 26 bytes * 8 bits = 206 bits of memory!
         if(isalpha(plaintext[i])){
             if(isupper(plaintext[i])){
-                if(plaintext[i] + shift_key > 90){
-                    plaintext[i] = ((plaintext[i] + shift_key) % 90) + 64;
+                if(plaintext[i] + shift_key > ASCII_UPPER_CASE_UPPER_BOUND){
+                    plaintext[i] = ((plaintext[i] + shift_key) % ASCII_UPPER_CASE_UPPER_BOUND) + ASCII_UPPER_CASE_LOWER_BOUND;
                 }
                 else{
-                    plaintext[i] = (plaintext[i] + shift_key) % 90;
+                    plaintext[i] = (plaintext[i] + shift_key) % ASCII_UPPER_CASE_UPPER_BOUND;
                 }
             }
             else{
-                if(plaintext[i] + shift_key > 122){
-                    plaintext[i] = ((plaintext[i] + shift_key) % 122) + 96;
+                if(plaintext[i] + shift_key > ASCII_LOWER_CASE_UPPER_BOUND){
+                    plaintext[i] = ((plaintext[i] + shift_key) % ASCII_LOWER_CASE_UPPER_BOUND) + ASCII_LOWER_CASE_LOWER_BOUND;
                 }
                 else{
-                    plaintext[i] = (plaintext[i] + shift_key) % 122;
+                    plaintext[i] = (plaintext[i] + shift_key) % ASCII_LOWER_CASE_UPPER_BOUND;
                 }
             }
         }
