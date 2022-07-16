@@ -49,5 +49,12 @@ bool contains_all_alphas_at_least_once(string text){
 }
 
 string is_only_alphabetical(string text){
+    int string_len = strlen(text);
+    for(int i = 0; i < string_len; i++){
+        if(!isalpha(text[i])){
+            return false;
+        }
+    }
+    return true;
 
 }
