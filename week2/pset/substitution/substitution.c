@@ -24,28 +24,19 @@ int main(int argc, string argv[])
                 if(contains_repeated_alpha_chars(argv[1])){
                     printf("Key must not contain any repeated alphabetical characters!\n"); 
                 }
-                string plaintext = get_string("plaintext: ");
-                printf("ciphertext: %s\n", get_substitution_cipher(plaintext, argv[1]));
-                return 0;
+                else{
+                    string plaintext = get_string("plaintext: ");
+                    printf("ciphertext: %s\n", get_substitution_cipher(plaintext, argv[1]));
+                    return 0;
+                }
             }
         }
         return 1;
     }
     else{
-        printf("./substitution key");
+        printf("./substitution key\n");
         return 1;
     }
-
-    // FOR DEBUGGING
-    // if(contains_repeated_alpha_chars("VCHPRZGJNTLSKFBDQWAXEUYMOI")){
-    //     printf("True\n");
-    //     return 0;
-
-    // }
-    // else{
-    //     printf("False\n");
-    //     return 1;
-    // }
 }
 
 // IMPLEMENTATION:
@@ -53,7 +44,19 @@ int main(int argc, string argv[])
 // then let cipher[i] = substitution_key[plaintext[i]];
 // finally, return cipher!
 string get_substitution_cipher(string plaintext, string substitution_key){
-    return "";
+    int string_len = strlen(plaintext);
+    for(int i = 0; i < string_len; i++){
+        if(isupper(plaintext[i])){
+            // in-place approach
+            plaintext[i] = substitution_key[plaintext[i] - ASCII_UPPER_CASE_ONSET];
+        }
+        else{
+            // in-place approach
+            plaintext[i] = tolower(substitution_key[plaintext[i] - ASCII_LOWER_CASE_ONSET]);
+        }
+    }
+    //in-place approach done to save memory so although this is named plaintext, in actuality the result is ciphertext!
+    return plaintext;
 }
 
 
