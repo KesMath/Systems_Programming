@@ -50,7 +50,7 @@ string get_substitution_cipher(string plaintext, string substitution_key){
             // in-place approach
             plaintext[i] = substitution_key[plaintext[i] - ASCII_UPPER_CASE_ONSET];
         }
-        else{
+        else if(islower(plaintext[i])){
             // in-place approach
             plaintext[i] = tolower(substitution_key[plaintext[i] - ASCII_LOWER_CASE_ONSET]);
         }
