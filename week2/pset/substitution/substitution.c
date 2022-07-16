@@ -1,9 +1,13 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
+
+const int ASCII_UPPER_CASE_ONSET = 65;
+const int ASCII_LOWER_CASE_ONSET = 97;
 
 bool contains_repeated_alpha_chars(string text);
-string is_only_alphabetical(string text);
+bool is_only_alphabetical(string text);
 string get_substitution_cipher(string plaintext, string substitution_key);
 
 int main(int argc, string argv[])
@@ -32,6 +36,16 @@ int main(int argc, string argv[])
         return 1;
     }
 
+    // FOR DEBUGGING
+    // if(contains_repeated_alpha_chars("VCHPRZGJNTLSKFBDQWAXEUYMOI")){
+    //     printf("True\n");
+    //     return 0;
+
+    // }
+    // else{
+    //     printf("False\n");
+    //     return 1;
+    // }
 }
 
 // IMPLEMENTATION:
@@ -39,7 +53,7 @@ int main(int argc, string argv[])
 // then let cipher[i] = substitution_key[plaintext[i]];
 // finally, return cipher!
 string get_substitution_cipher(string plaintext, string substitution_key){
-
+    return "";
 }
 
 
@@ -48,15 +62,41 @@ string get_substitution_cipher(string plaintext, string substitution_key){
 // to alphabetical letter and A[index] = occurrence
 
 // if character is indeed repeated, that means we will point back to
-// or reference the same A[index] and increment! (We can optimize here and return False early if A[index] > 1)
-
-// while looping through A, if A[index] > 1, return FALSE!
+// or reference the same A[index] and increment! 
+// If (A[index] > 1), that implies a repeated character exists! 
 bool contains_repeated_alpha_chars(string text){
+    bool contains_repeated_alpha = false;
+    int occurrence_arr[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int string_len = strlen(text);
 
+    //populating occurrence_array
+    for(int i = 0; i < string_len; i++){
+        if(isalpha(text[i])){
+            if(isupper(text[i])){
+                int index = text[i] - ASCII_UPPER_CASE_ONSET;
+                occurrence_arr[index] = occurrence_arr[index] + 1;
+                //optimization check
+                if(occurrence_arr[index] > 1){
+                    contains_repeated_alpha = true;
+                    break;
+                }
+            }
+            else{
+                int index = text[i] - ASCII_LOWER_CASE_ONSET;
+                occurrence_arr[index] = occurrence_arr[index] + 1;
+                //optimization check
+                if(occurrence_arr[index] > 1){
+                    contains_repeated_alpha = true;
+                    break;
+                }
+            }
+        }
+    }
 
+    return contains_repeated_alpha;
 }
 
-string is_only_alphabetical(string text){
+bool is_only_alphabetical(string text){
     int string_len = strlen(text);
     for(int i = 0; i < string_len; i++){
         if(!isalpha(text[i])){
