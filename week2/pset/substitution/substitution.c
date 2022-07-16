@@ -42,7 +42,17 @@ string get_substitution_cipher(string plaintext, string substitution_key){
 
 }
 
+
+// creates an occurrence array (reference it as A) where A is
+// an array of length 26 where index or position corresponds
+// to alphabetical letter and A[index] = occurrence
+
+// if character is indeed repeated, that means we will point back to
+// or reference the same A[index] and increment! (We can optimize here and return False early if A[index] > 1)
+
+// while looping through A, if A[index] > 1, return FALSE!
 bool contains_repeated_alpha_chars(string text){
+
 
 }
 
