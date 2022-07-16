@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-bool contains_repeated_chars(string text);
+bool contains_repeated_alpha_chars(string text);
 string is_only_alphabetical(string text);
 string get_substitution_cipher(string plaintext, string substitution_key);
 
@@ -17,8 +17,8 @@ int main(int argc, string argv[])
                 printf("Key must be alphabetical letters only!\n");
             }
             else{
-                if(contains_repeated_chars(argv[1])){
-                    printf("Key must contain all alphabetical characters at least once!\n"); 
+                if(contains_repeated_alpha_chars(argv[1])){
+                    printf("Key must not contain any repeated alphabetical characters!\n"); 
                 }
                 string plaintext = get_string("plaintext: ");
                 printf("ciphertext: %s\n", get_substitution_cipher(plaintext, argv[1]));
@@ -42,7 +42,7 @@ string get_substitution_cipher(string plaintext, string substitution_key){
 
 }
 
-bool contains_repeated_chars(string text){
+bool contains_repeated_alpha_chars(string text){
 
 }
 
