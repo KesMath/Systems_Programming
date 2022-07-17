@@ -49,6 +49,9 @@ string get_substitution_cipher(string plaintext, string substitution_key){
         if(isupper(plaintext[i])){
             // in-place approach
             plaintext[i] = substitution_key[plaintext[i] - ASCII_UPPER_CASE_ONSET];
+            if(islower(plaintext[i])){
+                plaintext[i] = toupper(plaintext[i]);  
+            }
         }
         else if(islower(plaintext[i])){
             // in-place approach
@@ -78,7 +81,7 @@ bool contains_repeated_alpha_chars(string text){
             if(isupper(text[i])){
                 int index = text[i] - ASCII_UPPER_CASE_ONSET;
                 occurrence_arr[index] = occurrence_arr[index] + 1;
-                //optimization check
+                // eager check
                 if(occurrence_arr[index] > 1){
                     contains_repeated_alpha = true;
                     break;
@@ -87,7 +90,7 @@ bool contains_repeated_alpha_chars(string text){
             else{
                 int index = text[i] - ASCII_LOWER_CASE_ONSET;
                 occurrence_arr[index] = occurrence_arr[index] + 1;
-                //optimization check
+                // eager check
                 if(occurrence_arr[index] > 1){
                     contains_repeated_alpha = true;
                     break;
