@@ -15,9 +15,9 @@ How do you know?
 sort2 uses: Merge Sort
 
 OBSERVATIONS:
-LowerBound: 0m0.036s on 5k sorted items
-LowerBound: 0m0.176s on 10k sorted items
-LowerBound: 0m0.703s on 50k sorted items
+LowerBound: 0m0.045s on 5k sorted items
+LowerBound: 0m0.050s on 10k sorted items
+LowerBound: 0m0.704s on 50k sorted items
 
 UpperBound: 0m0.033s on 5k random items
 UpperBound: 0m0.082s on 10k random items
