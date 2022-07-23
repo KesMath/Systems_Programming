@@ -1,38 +1,32 @@
-sort1 uses:BUBBLE SORT
+sort1 uses: Bubble Sort
 
-How do you know?
 OBSERVATIONS:
-LowerBound: 0m0.028s on 5k sorted items
-LowerBound: 0m0.092s on 10k sorted items
 LowerBound: 0m1.081s on 50k sorted items
-
-UpperBound: 0m0.100s on 5k random items
-UpperBound: 0m0.320s on 10k random items
 UpperBound: 0m7.821s on 50k random items
 
-sort2 uses:MERGE SORT
-
 How do you know?
-OBSERVATIONS:
-LowerBound: 0m0.045s on 5k sorted items
-LowerBound: 0m0.050s on 10k sorted items
-LowerBound: 0m0.704s on 50k sorted items
+Process of elimination
+and benchmark bounds shown above correlate to running time of said algorithm 
 
-UpperBound: 0m0.033s on 5k random items
-UpperBound: 0m0.082s on 10k random items
+sort2 uses: Merge Sort
+
+OBSERVATIONS:
+LowerBound: 0m0.703s on 50k sorted items
 UpperBound: 0m0.817s on 50k random items
 
+How do you know?
+ϴ(N) = N * logN or convergence of best case and worst case scenarios
+can be observed by their relatively close benchmark performances shown above 
 
-sort3 uses:SELECTION SORT
 
-How do you know?:
+sort3 uses: SELECTION SORT
 
 OBSERVATIONS:
+LowerBound: 0m3.325s on 50k sorted items
 
-LowerBound: 0m0.046s on 5k sorted items
-LowerBound: 0m0.172s on 10k sorted items
-LowerBound: 0m3.607s on 50k sorted items
-
-UpperBound: 0m0.049s on 5k random items
-UpperBound: 0m0.185s on 10k random items
-UpperBound: 0m3.696s on 50k random items
+How do you know?:
+Given Ω(N) = N^2 is the worst running time amongst 2 other sorting algorithms,
+when it comes to an already sorted list, 
+(since no optimizations exist to prevent unnecessary comparisons),
+the observation of a noticeable time discrepancy is a strong indicator of it's implementation
+being selection sort.
