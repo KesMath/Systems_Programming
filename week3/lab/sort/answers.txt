@@ -1,11 +1,33 @@
-sort1 uses: TODO
+sort1 uses: Bubble Sort
 
-How do you know?: TODO
+OBSERVATIONS:
+LowerBound: 0m1.081s on 50k sorted items
+UpperBound: 0m7.821s on 50k random items
 
-sort2 uses: TODO
+How do you know?
+Process of elimination
+and benchmark bounds shown above correlate to running time of said algorithm 
 
-How do you know?: TODO
+sort2 uses: Merge Sort
 
-sort3 uses: TODO
+OBSERVATIONS:
+LowerBound: 0m0.703s on 50k sorted items
+UpperBound: 0m0.817s on 50k random items
 
-How do you know?: TODO
+How do you know?
+ϴ(N) = N * logN or convergence of best case and worst case scenarios
+can be observed by their relatively close benchmark performances shown above 
+
+
+sort3 uses: SELECTION SORT
+
+OBSERVATIONS:
+LowerBound: 0m3.325s on 50k sorted items
+
+How do you know?:
+Given Ω(N) = N^2 is the worst running time amongst 2 other sorting algorithms,
+when it comes to an already sorted list, 
+(since no optimizations exist to prevent unnecessary comparisons),
+the observation of a noticeable time discrepancy is a strong indicator of it's implementation
+being selection sort.
+
