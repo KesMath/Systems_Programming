@@ -1,5 +1,6 @@
-sort1 uses:
+sort1 uses:BUBBLE SORT
 
+How do you know?
 OBSERVATIONS:
 LowerBound: 0m0.028s on 5k sorted items
 LowerBound: 0m0.092s on 10k sorted items
@@ -9,11 +10,9 @@ UpperBound: 0m0.100s on 5k random items
 UpperBound: 0m0.320s on 10k random items
 UpperBound: 0m7.821s on 50k random items
 
+sort2 uses:MERGE SORT
+
 How do you know?
-
-
-sort2 uses: Merge Sort
-
 OBSERVATIONS:
 LowerBound: 0m0.045s on 5k sorted items
 LowerBound: 0m0.050s on 10k sorted items
@@ -23,10 +22,10 @@ UpperBound: 0m0.033s on 5k random items
 UpperBound: 0m0.082s on 10k random items
 UpperBound: 0m0.817s on 50k random items
 
-How do you know?
 
+sort3 uses:SELECTION SORT
 
-sort3 uses: 
+How do you know?:
 
 OBSERVATIONS:
 
@@ -37,6 +36,3 @@ LowerBound: 0m3.607s on 50k sorted items
 UpperBound: 0m0.049s on 5k random items
 UpperBound: 0m0.185s on 10k random items
 UpperBound: 0m3.696s on 50k random items
-
-How do you know?:
-
