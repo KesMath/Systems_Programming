@@ -81,16 +81,30 @@ bool vote(string name)
 // implementation would be better with some dynamically allocated array
 void print_winner(void)
 { 
-    string highest_scoring_candidate;
+    int highest_scoring_candidate_index[candidate_count];
+    int winner_cout = 0;
     for(int i = 0; i < candidate_count - 1; i++){
         if(candidates[i].votes > candidates[i+1].votes){
-            highest_scoring_candidate = candidates[i].name;
+            highest_scoring_candidate_index[i] = i;
         }
         else if(candidates[i].votes < candidates[i+1].votes){
-            highest_scoring_candidate = candidates[i+1].name; 
+            highest_scoring_candidate_index[i] = i+1; 
+        }
+        else{
+            // add both winners to list
+            highest_scoring_candidate_index[i] = i;
+            highest_scoring_candidate_index[i+1] = i+1;  
+            winner_cout+=2;
         }
     }
     
-    printf("%s\n", highest_scoring_candidate);
+    if (winner_cout < 1){
+        printf("%s\n", candidates[highest_scoring_candidate_index[0]].name);
+    }
+    else{
+        for(int i = 0; i < winner_cout; i++){
+            printf("%s\n", candidates[highest_scoring_candidate_index[i]].name);
+        }
+    }
     return;
 }
