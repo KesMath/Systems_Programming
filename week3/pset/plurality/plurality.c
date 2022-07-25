@@ -78,6 +78,7 @@ bool vote(string name)
 }
 
 // Print the winner (or winners) of the election
+// implementation would be better with some dynamically allocated array
 void print_winner(void)
 { 
     string highest_scoring_candidate;
