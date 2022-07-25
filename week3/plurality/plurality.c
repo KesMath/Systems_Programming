@@ -64,6 +64,8 @@ int main(int argc, string argv[])
 }
 
 // Update vote totals given a new vote
+// A Better approach would be to use dictionary which would reduce O(n*m) runtime in main() to O(n)
+// but for the sake of this pset, the instructors want students to get used to structs
 bool vote(string name)
 {
     for(int i = 0; i < candidate_count; i++){
@@ -77,7 +79,17 @@ bool vote(string name)
 
 // Print the winner (or winners) of the election
 void print_winner(void)
-{
-    // TODO
+{ 
+    string highest_scoring_candidate;
+    for(int i = 0; i < candidate_count - 1; i++){
+        if(candidates[i].votes > candidates[i+1].votes){
+            highest_scoring_candidate = candidates[i].name;
+        }
+        else if(candidates[i].votes < candidates[i+1].votes){
+            highest_scoring_candidate = candidates[i+1].name; 
+        }
+    }
+    
+    printf("%s\n", highest_scoring_candidate);
     return;
 }
