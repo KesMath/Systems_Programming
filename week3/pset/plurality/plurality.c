@@ -25,39 +25,52 @@ void print_winner(void);
 
 int main(int argc, string argv[])
 {
-    // Check for invalid usage
-    if (argc < 2)
-    {
-        printf("Usage: plurality [candidate ...]\n");
-        return 1;
-    }
+    // // Check for invalid usage
+    // if (argc < 2)
+    // {
+    //     printf("Usage: plurality [candidate ...]\n");
+    //     return 1;
+    // }
 
-    // Populate array of candidates
-    candidate_count = argc - 1;
-    if (candidate_count > MAX)
-    {
-        printf("Maximum number of candidates is %i\n", MAX);
-        return 2;
-    }
-    for (int i = 0; i < candidate_count; i++)
-    {
-        candidates[i].name = argv[i + 1];
-        candidates[i].votes = 0;
-    }
+    // // Populate array of candidates
+    // candidate_count = argc - 1;
+    // if (candidate_count > MAX)
+    // {
+    //     printf("Maximum number of candidates is %i\n", MAX);
+    //     return 2;
+    // }
+    // for (int i = 0; i < candidate_count; i++)
+    // {
+    //     candidates[i].name = argv[i + 1];
+    //     candidates[i].votes = 0;
+    // }
 
-    int voter_count = get_int("Number of voters: ");
+    // int voter_count = get_int("Number of voters: ");
 
-    // Loop over all voters
-    for (int i = 0; i < voter_count; i++)
+    // // Loop over all voters
+    // for (int i = 0; i < voter_count; i++)
+    // {
+    //     string name = get_string("Vote: ");
+
+    //     // Check for invalid vote
+    //     if (!vote(name))
+    //     {
+    //         printf("Invalid vote.\n");
+    //     }
+    // }
+
+
+    //TESTING!!!
+    int array[] = {2, 1, 3, 7, 4};
+    string arr[] = {"pat", "mat", "cat", "dat", "frat"};
+
+    for (int i = 0; i < 5; i++)
     {
-        string name = get_string("Vote: ");
-
-        // Check for invalid vote
-        if (!vote(name))
-        {
-            printf("Invalid vote.\n");
-        }
+        candidates[i].name = arr[i];
+        candidates[i].votes = array[i];
     }
+    // DONE TESTING!!!
+
 
     // Display winner of election
     print_winner();
@@ -83,11 +96,23 @@ void swap(candidate arr[], int index1, int index2){
     arr[index2] = temp;
 }
 
+void selection_sort(void){
+    // selection sort candidate array from least to greatest votes
+    for(int i = 0; i < candidate_count; i++){
+        for(int j = i + 1; j < candidate_count; j++){
+            if(candidates[i].votes > candidates[j].votes){
+                swap(candidates, i, j);
+            }
+        }
+    }
+}
+
 // Print the winner (or winners) of the election
-// We can sort array based on vote count and print accoringly 
+// We can sort array based on vote count and print accordingly 
 void print_winner(void)
 {
     // selection sort candidate array from least to greatest votes
+    selection_sort();
     // iterate backwards to print winners ... stopping when
     return;
 }
