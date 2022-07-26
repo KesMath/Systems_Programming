@@ -77,7 +77,7 @@ int main(int argc, string argv[])
 //         printf("%i\n", candidates[i].votes);
 //     }
 //     //DONE TESTING!!!
-// }
+}
 
 // Update vote totals given a new vote
 // A Better approach would be to use dictionary which would reduce O(n*m) runtime in main() to O(n)
@@ -118,6 +118,25 @@ void print_winner(void)
 {
     // selection sort candidate array from least to greatest votes
     selection_sort();
-    // iterate backwards to print winners ... stopping when
+
+    // scenario when we have a single winner
+    if(candidates[candidate_count].votes > candidates[candidate_count - 1].votes){
+        printf("%s\n",candidates[candidate_count].name);
+    }
+    else{
+        // scenario when we have multiple winners
+        // we essentially iterate backwards (since candidates with largest votes are on the right-hand-side)
+        // and break out when all candidates with tied scores are printed
+        for(; candidate_count > 0; candidate_count--){
+            if(candidates[candidate_count].votes == candidates[candidate_count - 1].votes){
+                printf("%s\n",candidates[candidate_count].name);
+            }
+            else{
+                break;
+            }
+        }
+        // print trailing candidate who tied since comparison above only prints one at a time
+        printf("%s\n",candidates[candidate_count].name);
+    }
     return;
 }
