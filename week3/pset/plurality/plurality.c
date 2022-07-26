@@ -77,9 +77,17 @@ bool vote(string name)
     return false;
 }
 
+void swap(candidate arr[], int index1, int index2){
+    candidate temp = arr[index1];
+    arr[index1] = arr[index2];
+    arr[index2] = temp;
+}
+
 // Print the winner (or winners) of the election
 // We can sort array based on vote count and print accoringly 
 void print_winner(void)
-{ 
+{
+    // selection sort candidate array from least to greatest votes
+    // iterate backwards to print winners ... stopping when
     return;
 }
