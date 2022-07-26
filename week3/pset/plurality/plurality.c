@@ -78,33 +78,8 @@ bool vote(string name)
 }
 
 // Print the winner (or winners) of the election
-// implementation would be better with some dynamically allocated array
+// We can sort array based on vote count and print accoringly 
 void print_winner(void)
 { 
-    int highest_scoring_candidate_index[candidate_count];
-    int winner_cout = 0;
-    for(int i = 0; i < candidate_count - 1; i++){
-        if(candidates[i].votes > candidates[i+1].votes){
-            highest_scoring_candidate_index[i] = i;
-        }
-        else if(candidates[i].votes < candidates[i+1].votes){
-            highest_scoring_candidate_index[i] = i+1; 
-        }
-        else{
-            // add both winners to list
-            highest_scoring_candidate_index[i] = i;
-            highest_scoring_candidate_index[i+1] = i+1;  
-            winner_cout+=2;
-        }
-    }
-    
-    if (winner_cout < 1){
-        printf("%s\n", candidates[highest_scoring_candidate_index[0]].name);
-    }
-    else{
-        for(int i = 0; i < winner_cout; i++){
-            printf("%s\n", candidates[highest_scoring_candidate_index[i]].name);
-        }
-    }
     return;
 }
