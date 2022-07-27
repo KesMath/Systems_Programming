@@ -127,6 +127,7 @@ void print_winner(void)
         // scenario when we have multiple winners
         // we essentially iterate backwards (since candidates with largest votes are on the right-hand-side)
         // and break out when all candidates with tied scores are printed
+        // FIXME: index bug exists during 3-way-tie when testing using 6 voters!
         for(; candidate_count > 0; candidate_count--){
             if(candidates[candidate_count - 1].votes == candidates[candidate_count - 2].votes){
                 printf("%s\n", candidates[candidate_count - 1].name);
