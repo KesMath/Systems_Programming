@@ -120,23 +120,23 @@ void print_winner(void)
     selection_sort();
 
     // scenario when we have a single winner
-    if(candidates[candidate_count].votes > candidates[candidate_count - 1].votes){
-        printf("%s\n",candidates[candidate_count].name);
+    if(candidates[candidate_count - 1].votes > candidates[candidate_count - 2].votes){
+        printf("%s\n", candidates[candidate_count - 1].name);
     }
     else{
         // scenario when we have multiple winners
         // we essentially iterate backwards (since candidates with largest votes are on the right-hand-side)
         // and break out when all candidates with tied scores are printed
         for(; candidate_count > 0; candidate_count--){
-            if(candidates[candidate_count].votes == candidates[candidate_count - 1].votes){
-                printf("%s\n",candidates[candidate_count].name);
+            if(candidates[candidate_count - 1].votes == candidates[candidate_count - 2].votes){
+                printf("%s\n", candidates[candidate_count - 1].name);
             }
             else{
                 break;
             }
         }
         // print trailing candidate who tied since comparison above only prints one at a time
-        printf("%s\n",candidates[candidate_count].name);
+        printf("%s\n",candidates[candidate_count - 1].name);
     }
     return;
 }
