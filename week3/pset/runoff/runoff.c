@@ -129,7 +129,7 @@ int main(int argc, string argv[])
 // The function takes arguments voter, rank, and name.
 // If name is a match for the name of a valid candidate,
 // then you should update the global preferences array
-// to indicate that the voter voter has that candidate as their rank preference
+// to indicate that the voter has that candidate as their rank preference
 // (where 0 is the first preference, 1 is the second preference, etc.).
 
 // If the preference is successfully recorded, the function should return true;
@@ -137,7 +137,12 @@ int main(int argc, string argv[])
 // (if, for instance, name is not the name of one of the candidates).
 bool vote(int voter, int rank, string name)
 {
-    // TODO
+    for(int i = 0; i < candidate_count; i++){
+        if(strcmp(name, candidates[i].name) == 0){
+            preferences[voter][i] = rank;
+            return true;
+        }
+    }
     return false;
 }
 
