@@ -147,11 +147,12 @@ bool vote(int voter, int rank, string name)
 }
 
 // Tabulate votes for non-eliminated candidates
-// iterate through preferences array and persist vote count in candidates arr!
+// iterate through preferences[i][0] (which is their top preferred candidate) and persist vote count in candidates arr!
 void tabulate(void)
 {
-    // TODO
-    return;
+    for(int i = 0; i < voter_count; i++){
+        candidates[preferences[i][0] - 1].votes++;
+    }
 }
 
 
@@ -159,7 +160,13 @@ void tabulate(void)
 // If nobody has won the election yet, the function should return false.
 bool print_winner(void)
 {
-    // TODO
+    int half_voter_cout = voter_count / 2;
+    for(int i = 0; i < candidate_count; i++){
+        if(candidates[i].votes > half_voter_cout){
+            printf("%s\n", candidates[i].name);
+            return true;
+        }
+    } 
     return false;
 }
 
