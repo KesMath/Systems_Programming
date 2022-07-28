@@ -125,6 +125,16 @@ int main(int argc, string argv[])
 }
 
 // Record preference if vote is valid
+
+// The function takes arguments voter, rank, and name.
+// If name is a match for the name of a valid candidate,
+// then you should update the global preferences array
+// to indicate that the voter voter has that candidate as their rank preference
+// (where 0 is the first preference, 1 is the second preference, etc.).
+
+// If the preference is successfully recorded, the function should return true;
+// the function should return false otherwise
+// (if, for instance, name is not the name of one of the candidates).
 bool vote(int voter, int rank, string name)
 {
     // TODO
@@ -132,13 +142,16 @@ bool vote(int voter, int rank, string name)
 }
 
 // Tabulate votes for non-eliminated candidates
+// iterate through preferences array and persist vote count in candidates arr!
 void tabulate(void)
 {
     // TODO
     return;
 }
 
-// Print the winner of the election, if there is one
+
+// If any candidate has more than half of the vote, their name should be printed and the function should return true.
+// If nobody has won the election yet, the function should return false.
 bool print_winner(void)
 {
     // TODO
@@ -146,6 +159,8 @@ bool print_winner(void)
 }
 
 // Return the minimum number of votes any remaining candidate has
+// min = canndidates[0].votes ... iterate through all (n-1) candidates
+// then if candidates[i].vote < min assign that to min, then return min after coplete walkthrough!
 int find_min(void)
 {
     // TODO
