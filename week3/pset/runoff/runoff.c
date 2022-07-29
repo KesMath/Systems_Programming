@@ -172,11 +172,30 @@ bool print_winner(void)
 
 // Return the minimum number of votes any remaining candidate has
 // min = canndidates[0].votes ... iterate through all (n-1) candidates
-// then if candidates[i].vote < min assign that to min, then return min after coplete walkthrough!
+// then if candidates[i].vote < min assign that to min, then return min after complete walkthrough!
 int find_min(void)
 {
-    // TODO
-    return 0;
+    int absolute_min;
+    int local_min;
+    int local_min_index;
+
+    // getting first vote for non-eliminated candidate 
+    for(int i = 0; i < candidate_count; i++){
+        if(!candidates[i].eliminated){
+            local_min = candidates[i].votes;
+            local_min_index = i;
+            break;
+        }
+    }
+    //starting comparisons from the next candidate down the line!
+    local_min_index++;
+    for(; local_min_index < candidate_count; local_min_index++){
+        if((!candidates[i].eliminated) && (candidates[i].votes < local_min)){
+            local_min = candidates[i].votes;
+        }
+    }
+    absolute_min = local_min;
+    return absolute_min;
 }
 
 // Return true if the election is tied between all candidates, false otherwise
