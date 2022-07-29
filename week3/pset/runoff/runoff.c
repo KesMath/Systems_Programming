@@ -151,7 +151,9 @@ bool vote(int voter, int rank, string name)
 void tabulate(void)
 {
     for(int i = 0; i < voter_count; i++){
-        candidates[preferences[i][0] - 1].votes++;
+        if(!candidates[i].eliminated){
+            candidates[preferences[i][0] - 1].votes++;   
+        }
     }
 }
 
@@ -199,6 +201,8 @@ int find_min(void)
 }
 
 // Return true if the election is tied between all candidates, false otherwise
+// it takes in a parameter min because we will like to exlude those who are the lowest running candidates
+// i.e. we can't declare a tie amongst the losers, so we need to exclude them
 bool is_tie(int min)
 {
     // TODO
@@ -206,8 +210,6 @@ bool is_tie(int min)
 }
 
 // Eliminate the candidate (or candidates) in last place
-// a better approach would've been to just remove them from the candidates aray but
-// we haven't been taught how to work on dynamically sized lists (i.e. linked lists)
 void eliminate(int min)
 {
     for(int i = 0; i < candidate_count; i++){
