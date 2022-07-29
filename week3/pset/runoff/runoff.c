@@ -148,11 +148,15 @@ bool vote(int voter, int rank, string name)
 
 // Tabulate votes for non-eliminated candidates
 // iterate through preferences[i][0] (which is their top preferred candidate) and persist vote count in candidates arr!
+// if person is indeed eliminated, fetch their preferences[i][1] and persist vote in candidates arr!
 void tabulate(void)
 {
     for(int i = 0; i < voter_count; i++){
         if(!candidates[i].eliminated){
             candidates[preferences[i][0] - 1].votes++;   
+        }
+        else{
+            candidates[preferences[i][1] - 1].votes++;
         }
     }
 }
