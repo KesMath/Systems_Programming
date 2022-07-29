@@ -187,8 +187,13 @@ bool is_tie(int min)
 }
 
 // Eliminate the candidate (or candidates) in last place
+// a better approach would've been to just remove them from the candidates aray but
+// we haven't been taught how to work on dynamically sized lists (i.e. linked lists)
 void eliminate(int min)
 {
-    // TODO
-    return;
+    for(int i = 0; i < candidate_count; i++){
+        if(candidates[i].votes == min){
+            candidates[i].eliminated = true;
+        }
+    }
 }
