@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <string.h>
 
 // Max voters and candidates
 #define MAX_VOTERS 100
@@ -183,7 +184,7 @@ int find_min(void)
 {
     int absolute_min;
     int local_min;
-    int local_min_index;
+    int local_min_index = 0;
 
     // getting first vote for non-eliminated candidate 
     for(int i = 0; i < candidate_count; i++){
@@ -196,8 +197,8 @@ int find_min(void)
     //starting comparisons from the next candidate down the line!
     local_min_index++;
     for(; local_min_index < candidate_count; local_min_index++){
-        if((!candidates[i].eliminated) && (candidates[i].votes < local_min)){
-            local_min = candidates[i].votes;
+        if((!candidates[local_min_index].eliminated) && (candidates[local_min_index].votes < local_min)){
+            local_min = candidates[local_min_index].votes;
         }
     }
     absolute_min = local_min;
