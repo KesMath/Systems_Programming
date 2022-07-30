@@ -205,8 +205,10 @@ int find_min(void)
 }
 
 // Return true if the election is tied between all candidates, false otherwise
-// it takes in a parameter min because we will like to exlude those who are the lowest running candidates
-// i.e. we can't declare a tie amongst the losers, so we need to exclude them
+// "If every remaining candidate has the exact same number of votes, though, eliminating the tied last place candidates means eliminating everyone!
+// So in that case, we’ll have to be careful not to eliminate everyone, and just declare the election a tie between all remaining candidates."
+
+// hence, min is parametrized in order to prevent all candidates from being eliminated!
 bool is_tie(int min)
 {
     // TODO
