@@ -208,11 +208,17 @@ int find_min(void)
 // "If every remaining candidate has the exact same number of votes, though, eliminating the tied last place candidates means eliminating everyone!
 // So in that case, we’ll have to be careful not to eliminate everyone, and just declare the election a tie between all remaining candidates."
 
-// hence, min is parametrized in order to prevent all candidates from being eliminated!
 bool is_tie(int min)
 {
-    // TODO
-    return false;
+    for(int i = 0; i < candidate_count; i++){
+        if(!candidates[i].eliminated){
+            if(candidates[i].votes != min){
+                return false;
+            }
+        }
+    }
+    return true;
+
 }
 
 // Eliminate the candidate (or candidates) in last place
