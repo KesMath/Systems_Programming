@@ -6,6 +6,7 @@
 
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
+const int HEADER_BIT_COUT = HEADER_SIZE * sizeof(u_int8_t);
 
 int main(int argc, char *argv[])
 {
@@ -34,6 +35,25 @@ int main(int argc, char *argv[])
     float factor = atof(argv[3]);
 
     // TODO: Copy header from input file to output file
+    uint8_t header_buffer[HEADER_SIZE];
+
+    // fread() is gonna move filepointer 8 bits at a time, 44 times and copy results into header_buffer
+    // it returns number of items read ... in this case that's 352 items since 44 bytes * 8 bits 
+    size_t bytes_read = fread(header_buffer, sizeof(u_int8_t), HEADER_SIZE, input);
+
+    if(bytes_read != HEADER_BIT_COUT){
+        printf("Was not able to read all %i bits successfully", HEADER_SIZE * sizeof(u_int8_t));
+        return 1;
+    }
+    
+    // fwrite() going to ingest that buffer, 8 bits at a time, and write that to output file, 44 times
+    // it returns number of items written ... in this case that's 352 items since 44 bytes * 8 bits 
+    size_t bytes_written = fwrite(header_buffer, sizeof(uint8_t), HEADER_SIZE, output);
+
+    if(bytes_written != HEADER_BIT_COUT){
+        printf("Was not able to write all %i bits successfully", HEADER_SIZE * sizeof(u_int8_t));
+        return 1;
+    }
 
     // TODO: Read samples from input file and write updated data to output file
 
