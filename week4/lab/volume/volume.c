@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     size_t bytes_read = fread(header_buffer, sizeof(u_int8_t), HEADER_SIZE, input);
 
     if(bytes_read != HEADER_SIZE){
-        printf("Was not able to read all %li bits successfully", HEADER_SIZE * sizeof(u_int8_t));
+        printf("Was not able to read all %i bytes successfully", HEADER_SIZE);
         return 1;
     }
     
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     size_t bytes_written = fwrite(header_buffer, sizeof(uint8_t), HEADER_SIZE, output);
 
     if(bytes_written != HEADER_SIZE){
-        printf("Was not able to write all %li bits successfully", HEADER_SIZE * sizeof(u_int8_t));
+        printf("Was not able to write all %i bytes successfully", HEADER_SIZE);
         return 1;
     }
 
