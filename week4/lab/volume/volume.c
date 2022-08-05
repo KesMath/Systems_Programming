@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 
     // TODO: Read samples from input file and write updated data to output file
     uint16_t *audio_sample;
-    while((audio_sample = fread(audio_sample, sizeof(u_int16_t), 1, input)) != EOF){
+    while((audio_sample = fread(audio_sample, sizeof(u_int16_t), 1, input)) != sizeof(uint16_t)){
         //from right to left, get value at that pointer by dereferencing, multiply by factor
         factor * (*audio_sample);
         fwrite(audio_sample, sizeof(u_int16_t), 1, output);
