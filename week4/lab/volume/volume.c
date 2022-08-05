@@ -34,6 +34,9 @@ int main(int argc, char *argv[])
     float factor = atof(argv[3]);
 
     // TODO: Copy header from input file to output file
+
+    // creates array of size 44 on stack ... we can optionally save it on the heap with malloc()
+    // what's the benefit of saving it on the heap or stack?
     uint8_t header_buffer[HEADER_SIZE];
 
     // fread() is gonna move filepointer 8 bits at a time, 44 times and copy results into header_buffer
@@ -55,8 +58,8 @@ int main(int argc, char *argv[])
     }
 
     // TODO: Read samples from input file and write updated data to output file
-    uint16_t *audio_sample;
-    while((audio_sample = fread(audio_sample, sizeof(u_int16_t), 1, input)) != sizeof(uint16_t)){
+    uint16_t *audio_sample = NULL;
+    while(fread(audio_sample, sizeof(u_int16_t), 1, input) != sizeof(uint16_t)){
         //from right to left, get value at that pointer by dereferencing, multiply by factor
         factor * (*audio_sample);
         fwrite(audio_sample, sizeof(u_int16_t), 1, output);
