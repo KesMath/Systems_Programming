@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
     uint16_t *audio_sample = NULL;
     while(fread(audio_sample, sizeof(u_int16_t), 1, input) != sizeof(uint16_t)){
         //from right to left, get value at that pointer by dereferencing, multiply by factor
-        factor * (*audio_sample);
+        *audio_sample = factor * (*audio_sample);
         fwrite(audio_sample, sizeof(u_int16_t), 1, output);
     }
 
