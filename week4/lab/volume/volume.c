@@ -58,12 +58,12 @@ int main(int argc, char *argv[])
     }
 
     // TODO: Read samples from input file and write updated data to output file
-    uint16_t audio_sample;
+    int16_t audio_sample;
 
     // reading 16 bits / 2 bytes one at a time until fread() returns 0 bytes read meaning end of file!
-    while(fread(&audio_sample, sizeof(u_int16_t), 1, input) == 1){
+    while(fread(&audio_sample, sizeof(int16_t), 1, input) == 1){
         audio_sample *= factor;
-        fwrite(&audio_sample, sizeof(u_int16_t), 1, output);
+        fwrite(&audio_sample, sizeof(int16_t), 1, output);
     }
 
     // Close files
