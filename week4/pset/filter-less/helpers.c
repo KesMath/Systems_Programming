@@ -1,6 +1,7 @@
 #include "helpers.h"
 #include "math.h"
 
+const int MAX_8_BIT_VALUE = 255;
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -8,9 +9,9 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         for(int j = 0; j < width; j++){
             //take average of all 3 colors to get the intensity of gray for that pixel and set all pixels to that average
             double grayscale_intensity = round(image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed / 3);
-            image[i][j].rgbtBlue = (BYTE) grayscale_intensity;
+            image[i][j].rgbtBlue  = (BYTE) grayscale_intensity;
             image[i][j].rgbtGreen = (BYTE) grayscale_intensity;
-            image[i][j].rgbtRed = (BYTE) grayscale_intensity;
+            image[i][j].rgbtRed   = (BYTE) grayscale_intensity;
         }
     }
     return;
@@ -19,6 +20,27 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Convert image to sepia
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
+    for(int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
+            double sephiaRed   = round(.393 * image[i][j].rgbtRed + .769 * image[i][j].rgbtGreen + .189 * image[i][j].rgbtBlue);
+            double sephiaGreen = round(.349 * image[i][j].rgbtRed + .686 * image[i][j].rgbtGreen + .168 * image[i][j].rgbtBlue);
+            double sephiaBlue  = round(.272 * image[i][j].rgbtRed + .534 * image[i][j].rgbtGreen + .131 * image[i][j].rgbtBlue);
+
+            if(sephiaRed > MAX_8_BIT_VALUE){
+                sephiaRed = MAX_8_BIT_VALUE;
+            }
+            else if(sephiaGreen > MAX_8_BIT_VALUE){
+                sephiaGreen = MAX_8_BIT_VALUE;
+            }
+            else if(sephiaBlue > MAX_8_BIT_VALUE){
+                sephiaBlue = MAX_8_BIT_VALUE;
+            }
+            
+            image[i][j].rgbtRed   = sephiaRed;
+            image[i][j].rgbtGreen = sephiaGreen;
+            image[i][j].rgbtBlue  = sephiaBlue;               
+        }
+    }
     return;
 }
 
