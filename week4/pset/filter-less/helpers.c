@@ -22,23 +22,23 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
     for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
-            double sephiaRed   = round(.393 * image[i][j].rgbtRed + .769 * image[i][j].rgbtGreen + .189 * image[i][j].rgbtBlue);
-            double sephiaGreen = round(.349 * image[i][j].rgbtRed + .686 * image[i][j].rgbtGreen + .168 * image[i][j].rgbtBlue);
-            double sephiaBlue  = round(.272 * image[i][j].rgbtRed + .534 * image[i][j].rgbtGreen + .131 * image[i][j].rgbtBlue);
+            double sephiaRed   = round((.393 * image[i][j].rgbtRed) + (.769 * image[i][j].rgbtGreen) + (.189 * image[i][j].rgbtBlue));
+            double sephiaGreen = round((.349 * image[i][j].rgbtRed) + (.686 * image[i][j].rgbtGreen) + (.168 * image[i][j].rgbtBlue));
+            double sephiaBlue  = round((.272 * image[i][j].rgbtRed) + (.534 * image[i][j].rgbtGreen) + (.131 * image[i][j].rgbtBlue));
 
             if(sephiaRed > MAX_8_BIT_VALUE){
                 sephiaRed = MAX_8_BIT_VALUE;
             }
-            else if(sephiaGreen > MAX_8_BIT_VALUE){
+            if(sephiaGreen > MAX_8_BIT_VALUE){
                 sephiaGreen = MAX_8_BIT_VALUE;
             }
-            else if(sephiaBlue > MAX_8_BIT_VALUE){
+            if(sephiaBlue > MAX_8_BIT_VALUE){
                 sephiaBlue = MAX_8_BIT_VALUE;
             }
-            
-            image[i][j].rgbtRed   = sephiaRed;
-            image[i][j].rgbtGreen = sephiaGreen;
-            image[i][j].rgbtBlue  = sephiaBlue;               
+
+            image[i][j].rgbtRed   = (BYTE) sephiaRed;
+            image[i][j].rgbtGreen = (BYTE) sephiaGreen;
+            image[i][j].rgbtBlue  = (BYTE) sephiaBlue;               
         }
     }
     return;
