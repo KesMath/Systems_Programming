@@ -68,16 +68,26 @@ bool left_pixel_exists(int height, int width){
 }
 
 bool right_pixel_exists(int height, int width){
+    if(width + 1 == width){
+        return false;
+    }
+    return true;
 
 }
 
 bool above_pixel_exists(int height, int width){
-
+    if(height - 1 < 0){
+        return false;
+    }
+    return true;
 }
 
 
 bool below_pixel_exists(int height, int width){
-
+    if(height + 1 == height){
+        return false;
+    }
+    return true;
 }
 
 bool bottom_right_pixel_exists(int height, int width){
@@ -105,6 +115,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
         }
     }
-    return;
+
     return;
 }
