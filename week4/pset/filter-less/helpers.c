@@ -59,11 +59,16 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 }
 
 RGBTRIPLE get_pixel(int height, int width, RGBTRIPLE image[height][width]){
-
+    return image[height][width];
 }
 
 RGBTRIPLE get_left_pixel(int height, int width, RGBTRIPLE image[height][width]){
-
+    if(width - 1 < 0){
+        return;
+    }
+    else{
+        return get_pixel(height, width, image);
+    }
 }
 
 RGBTRIPLE get_right_pixel(int height, int width, RGBTRIPLE image[height][width]){
