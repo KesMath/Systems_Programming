@@ -122,9 +122,83 @@ bool upper_right_pixel_exists(int height, int width){
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    double red = 0;
+    double green = 0;
+    double blue = 0;
+    int valid_pixel_cout = 1;
+
     for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
+            if(left_pixel_exists(height, width)){
+                red += image[i][j - 1].rgbtRed;
+                blue += image[i][j - 1].rgbtBlue;
+                green += image[i][j - 1].rgbtGreen;
+                valid_pixel_cout++;
+            }
 
+            if(right_pixel_exists(height, width)){
+                red += image[i][j + 1].rgbtRed;
+                blue += image[i][j + 1].rgbtBlue;
+                green += image[i][j + 1].rgbtGreen;
+                valid_pixel_cout++;
+            }
+
+            if(above_pixel_exists(height, width)){
+                red += image[i - 1][j].rgbtRed;
+                blue += image[i - 1][j].rgbtBlue;
+                green += image[i - 1][j].rgbtGreen;
+                valid_pixel_cout++;
+            }
+
+            if(below_pixel_exists(height, width)){
+                red += image[i + 1][j].rgbtRed;
+                blue += image[i + 1][j].rgbtBlue;
+                green += image[i + 1][j].rgbtGreen;
+                valid_pixel_cout++;
+            }
+
+            if(bottom_right_pixel_exists(height, width)){
+                red += image[i + 1][j + 1].rgbtRed;
+                blue += image[i + 1][j + 1].rgbtBlue;
+                green += image[i + 1][j + 1].rgbtGreen;
+                valid_pixel_cout++;
+            }
+
+            if(bottom_left_pixel_exists(height, width)){
+                red += image[i + 1][j - 1].rgbtRed;
+                blue += image[i + 1][j - 1].rgbtBlue;
+                green += image[i + 1][j - 1].rgbtGreen;
+                valid_pixel_cout++;
+            }
+
+            if(upper_left_pixel_exists(height, width)){
+                red += image[i - 1][j - 1].rgbtRed;
+                blue += image[i - 1][j - 1].rgbtBlue;
+                green += image[i - 1][j - 1].rgbtGreen;
+                valid_pixel_cout++;
+            }
+
+            if(upper_right_pixel_exists(height, width)){
+                red += image[i - 1][j + 1].rgbtRed;
+                blue += image[i - 1][j + 1].rgbtBlue;
+                green += image[i - 1][j + 1].rgbtGreen;
+                valid_pixel_cout++;
+            }
+
+            // including current pixel in average too!
+            red += image[i][j].rgbtRed;
+            blue += image[i][j].rgbtBlue;
+            green += image[i][j].rgbtGreen;
+
+            image[i][j].rgbtRed = (BYTE) round(red / valid_pixel_cout);
+            image[i][j].rgbtBlue = (BYTE) round(blue / valid_pixel_cout);
+            image[i][j].rgbtGreen = (BYTE) round(green / valid_pixel_cout);
+
+            //resetting values for next pixel
+            red = 0;
+            blue = 0;
+            green = 0;
+            valid_pixel_cout = 1;
         }
     }
 
