@@ -58,8 +58,51 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
+RGBTRIPLE get_pixel(int height, int width, RGBTRIPLE image[height][width]){
+
+}
+
+RGBTRIPLE get_left_pixel(int height, int width, RGBTRIPLE image[height][width]){
+
+}
+
+RGBTRIPLE get_right_pixel(int height, int width, RGBTRIPLE image[height][width]){
+
+}
+
+RGBTRIPLE get_above_pixel(int height, int width, RGBTRIPLE image[height][width]){
+
+}
+
+
+RGBTRIPLE get_below_pixel(int height, int width, RGBTRIPLE image[height][width]){
+
+}
+
+RGBTRIPLE get_bottom_right_pixel(int height, int width, RGBTRIPLE image[height][width]){
+
+}
+
+RGBTRIPLE get_bottom_left_pixel(int height, int width, RGBTRIPLE image[height][width]){
+
+}
+
+RGBTRIPLE get_upper_left_pixel(int height, int width, RGBTRIPLE image[height][width]){
+
+}
+
+RGBTRIPLE get_upper_right_pixel(int height, int width, RGBTRIPLE image[height][width]){
+
+}
+
+
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    for(int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){            
+        }
+    }
+    return;
     return;
 }
