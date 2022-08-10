@@ -1,5 +1,6 @@
 #include "helpers.h"
-#include "math.h"
+#include <math.h>
+#include <stdbool.h>
 
 const int MAX_8_BIT_VALUE = 255;
 // Convert image to grayscale
@@ -58,45 +59,40 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
-RGBTRIPLE get_pixel(int height, int width, RGBTRIPLE image[height][width]){
-    return image[height][width];
-}
 
-RGBTRIPLE get_left_pixel(int height, int width, RGBTRIPLE image[height][width]){
+bool left_pixel_exists(int height, int width){
     if(width - 1 < 0){
-        return;
+        return false;
     }
-    else{
-        return get_pixel(height, width, image);
-    }
+    return true;
 }
 
-RGBTRIPLE get_right_pixel(int height, int width, RGBTRIPLE image[height][width]){
-
-}
-
-RGBTRIPLE get_above_pixel(int height, int width, RGBTRIPLE image[height][width]){
+bool right_pixel_exists(int height, int width){
 
 }
 
-
-RGBTRIPLE get_below_pixel(int height, int width, RGBTRIPLE image[height][width]){
-
-}
-
-RGBTRIPLE get_bottom_right_pixel(int height, int width, RGBTRIPLE image[height][width]){
+bool above_pixel_exists(int height, int width){
 
 }
 
-RGBTRIPLE get_bottom_left_pixel(int height, int width, RGBTRIPLE image[height][width]){
+
+bool below_pixel_exists(int height, int width){
 
 }
 
-RGBTRIPLE get_upper_left_pixel(int height, int width, RGBTRIPLE image[height][width]){
+bool bottom_right_pixel_exists(int height, int width){
 
 }
 
-RGBTRIPLE get_upper_right_pixel(int height, int width, RGBTRIPLE image[height][width]){
+bool bottom_left_pixel_exists(int height, int width){
+
+}
+
+bool upper_left_pixel_exists(int height, int width){
+
+}
+
+bool upper_right_pixel_exists(int height, int width){
 
 }
 
@@ -105,7 +101,8 @@ RGBTRIPLE get_upper_right_pixel(int height, int width, RGBTRIPLE image[height][w
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     for(int i = 0; i < height; i++){
-        for(int j = 0; j < width; j++){            
+        for(int j = 0; j < width; j++){
+
         }
     }
     return;
