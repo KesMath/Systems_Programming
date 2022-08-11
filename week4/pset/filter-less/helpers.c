@@ -2,6 +2,11 @@
 #include <math.h>
 #include <stdbool.h>
 
+//QUESTION: since heap space is freed by programmer and not automatically by garbage collector, is there a concept or procedure or practice
+// in which the programmer purposely leaks memory (by not calling free()) and after program completion, the OS can lock access to that address
+// for another priviledged program to access? Sort of like passing global values between programs!
+
+
 const int MAX_8_BIT_VALUE = 255;
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -115,83 +120,90 @@ bool upper_right_pixel_exists(int height, int width){
     return true;
 }
 
-
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    //TODO: blurring algorithm must work on the ORIGINAL values of the image ... this current implementation will take averages on mutated values!!
-    // operate on a copy and mutate the original!
      
     double red = 0;
     double green = 0;
     double blue = 0;
     int valid_pixel_cout = 1;
     
+
+    //RECALL: blurring algorithm must work on the ORIGINAL values of the image 
+    // Without making a copy, new pixel averages will be distorted (i.e. it will be the average of a pixel value who's RGB value is the average of it's 3x3 neighborhood!)
     
-    //RGBTRIPLE copyImage[height][width] = *image;
+    RGBTRIPLE copy_image[height][width];
+
+    for(int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
+            copy_image[i][j] = image[i][j];
+        }
+    }
 
     for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
             if(left_pixel_exists(height, width)){
-                red += image[i][j - 1].rgbtRed;
-                blue += image[i][j - 1].rgbtBlue;
-                green += image[i][j - 1].rgbtGreen;
+                red += copy_image[i][j - 1].rgbtRed;
+                blue += copy_image[i][j - 1].rgbtBlue;
+                green += copy_image[i][j - 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
             if(right_pixel_exists(height, width)){
-                red += image[i][j + 1].rgbtRed;
-                blue += image[i][j + 1].rgbtBlue;
-                green += image[i][j + 1].rgbtGreen;
+                red += copy_image[i][j + 1].rgbtRed;
+                blue += copy_image[i][j + 1].rgbtBlue;
+                green += copy_image[i][j + 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
             if(above_pixel_exists(height, width)){
-                red += image[i - 1][j].rgbtRed;
-                blue += image[i - 1][j].rgbtBlue;
-                green += image[i - 1][j].rgbtGreen;
+                red += copy_image[i - 1][j].rgbtRed;
+                blue += copy_image[i - 1][j].rgbtBlue;
+                green += copy_image[i - 1][j].rgbtGreen;
                 valid_pixel_cout++;
             }
 
             if(below_pixel_exists(height, width)){
-                red += image[i + 1][j].rgbtRed;
-                blue += image[i + 1][j].rgbtBlue;
-                green += image[i + 1][j].rgbtGreen;
+                red += copy_image[i + 1][j].rgbtRed;
+                blue += copy_image[i + 1][j].rgbtBlue;
+                green += copy_image[i + 1][j].rgbtGreen;
                 valid_pixel_cout++;
             }
 
             if(bottom_right_pixel_exists(height, width)){
-                red += image[i + 1][j + 1].rgbtRed;
-                blue += image[i + 1][j + 1].rgbtBlue;
-                green += image[i + 1][j + 1].rgbtGreen;
+                red += copy_image[i + 1][j + 1].rgbtRed;
+                blue += copy_image[i + 1][j + 1].rgbtBlue;
+                green += copy_image[i + 1][j + 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
             if(bottom_left_pixel_exists(height, width)){
-                red += image[i + 1][j - 1].rgbtRed;
-                blue += image[i + 1][j - 1].rgbtBlue;
-                green += image[i + 1][j - 1].rgbtGreen;
+                red += copy_image[i + 1][j - 1].rgbtRed;
+                blue += copy_image[i + 1][j - 1].rgbtBlue;
+                green += copy_image[i + 1][j - 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
             if(upper_left_pixel_exists(height, width)){
-                red += image[i - 1][j - 1].rgbtRed;
-                blue += image[i - 1][j - 1].rgbtBlue;
-                green += image[i - 1][j - 1].rgbtGreen;
+                red += copy_image[i - 1][j - 1].rgbtRed;
+                blue += copy_image[i - 1][j - 1].rgbtBlue;
+                green += copy_image[i - 1][j - 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
             if(upper_right_pixel_exists(height, width)){
-                red += image[i - 1][j + 1].rgbtRed;
-                blue += image[i - 1][j + 1].rgbtBlue;
-                green += image[i - 1][j + 1].rgbtGreen;
+                red += copy_image[i - 1][j + 1].rgbtRed;
+                blue += copy_image[i - 1][j + 1].rgbtBlue;
+                green += copy_image[i - 1][j + 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
             // including current pixel in average too!
-            red += image[i][j].rgbtRed;
-            blue += image[i][j].rgbtBlue;
-            green += image[i][j].rgbtGreen;
+            // can use regular image since it's value has not mutated yet but keeping it uniform for consistency
+            red += copy_image[i][j].rgbtRed;
+            blue += copy_image[i][j].rgbtBlue;
+            green += copy_image[i][j].rgbtGreen;
 
             image[i][j].rgbtRed = (BYTE) round(red / valid_pixel_cout);
             image[i][j].rgbtBlue = (BYTE) round(blue / valid_pixel_cout);
