@@ -192,7 +192,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 valid_pixel_cout++;
             }
 
-            if(upper_right_pixel_exists(j, height, width)){
+            if(upper_right_pixel_exists(i, j, width)){
                 red += copy_image[i - 1][j + 1].rgbtRed;
                 blue += copy_image[i - 1][j + 1].rgbtBlue;
                 green += copy_image[i - 1][j + 1].rgbtGreen;
