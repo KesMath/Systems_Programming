@@ -14,7 +14,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
             //take average of all 3 colors to get the intensity of gray for that pixel and set all pixels to that average
-            double grayscale_intensity = round(image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed / 3);
+            double grayscale_intensity = round((image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed) / 3);
             image[i][j].rgbtBlue  = (BYTE) grayscale_intensity;
             image[i][j].rgbtGreen = (BYTE) grayscale_intensity;
             image[i][j].rgbtRed   = (BYTE) grayscale_intensity;
