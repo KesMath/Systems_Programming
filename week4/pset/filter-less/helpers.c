@@ -62,22 +62,22 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 }
 
 // helper functions that checks if unit movement in all directions is valid
-bool left_pixel_exists(int height, int width){
+bool left_pixel_exists(int width){
     if(width - 1 < 0){
         return false;
     }
     return true;
 }
 
-bool right_pixel_exists(int height, int width){
-    if(width + 1 == width){
+bool right_pixel_exists(int current_y_pos, int width){
+    if(current_y_pos + 1 >= width){
         return false;
     }
     return true;
 
 }
 
-bool above_pixel_exists(int height, int width){
+bool above_pixel_exists(int height){
     if(height - 1 < 0){
         return false;
     }
@@ -85,36 +85,36 @@ bool above_pixel_exists(int height, int width){
 }
 
 
-bool below_pixel_exists(int height, int width){
-    if(height + 1 == height){
+bool below_pixel_exists(int current_x_pos, int height){
+    if(current_x_pos + 1 >= height){
         return false;
     }
     return true;
 }
 
-bool bottom_right_pixel_exists(int height, int width){
-    if(height + 1 == height && width + 1 == width){
+bool bottom_right_pixel_exists(int current_x_pos, int current_y_pos, int height, int width){
+    if(current_x_pos + 1 >= height || current_y_pos + 1 >= width){
         return false;
     } 
     return true; 
 }
 
-bool bottom_left_pixel_exists(int height, int width){
-    if(height + 1 == height && width - 1 < 0){
+bool bottom_left_pixel_exists(int current_x_pos, int current_y_pos, int height){
+    if(current_x_pos + 1 >= height || current_y_pos - 1 < 0){
         return false;
     } 
     return true;
 }
 
-bool upper_left_pixel_exists(int height, int width){
-    if(height - 1 < 0 && width - 1 < 0){
+bool upper_left_pixel_exists(int current_x_pos, int current_y_pos){
+    if(current_x_pos - 1 < 0 || current_y_pos - 1 < 0){
         return false;
     } 
     return true;
 }
 
-bool upper_right_pixel_exists(int height, int width){
-    if(height - 1 < 0 && width + 1 == width){
+bool upper_right_pixel_exists(int current_x_pos, int current_y_pos, int width){
+    if(current_x_pos - 1 < 0 || current_y_pos + 1 >= width){
         return false;
     } 
     return true;
@@ -143,56 +143,56 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
     for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
-            if(left_pixel_exists(height, width)){
+            if(left_pixel_exists(j)){
                 red += copy_image[i][j - 1].rgbtRed;
                 blue += copy_image[i][j - 1].rgbtBlue;
                 green += copy_image[i][j - 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
-            if(right_pixel_exists(height, width)){
+            if(right_pixel_exists(j, width)){
                 red += copy_image[i][j + 1].rgbtRed;
                 blue += copy_image[i][j + 1].rgbtBlue;
                 green += copy_image[i][j + 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
-            if(above_pixel_exists(height, width)){
+            if(above_pixel_exists(i)){
                 red += copy_image[i - 1][j].rgbtRed;
                 blue += copy_image[i - 1][j].rgbtBlue;
                 green += copy_image[i - 1][j].rgbtGreen;
                 valid_pixel_cout++;
             }
 
-            if(below_pixel_exists(height, width)){
+            if(below_pixel_exists(i, height)){
                 red += copy_image[i + 1][j].rgbtRed;
                 blue += copy_image[i + 1][j].rgbtBlue;
                 green += copy_image[i + 1][j].rgbtGreen;
                 valid_pixel_cout++;
             }
 
-            if(bottom_right_pixel_exists(height, width)){
+            if(bottom_right_pixel_exists(i, j, height, width)){
                 red += copy_image[i + 1][j + 1].rgbtRed;
                 blue += copy_image[i + 1][j + 1].rgbtBlue;
                 green += copy_image[i + 1][j + 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
-            if(bottom_left_pixel_exists(height, width)){
+            if(bottom_left_pixel_exists(i, j, height)){
                 red += copy_image[i + 1][j - 1].rgbtRed;
                 blue += copy_image[i + 1][j - 1].rgbtBlue;
                 green += copy_image[i + 1][j - 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
-            if(upper_left_pixel_exists(height, width)){
+            if(upper_left_pixel_exists(i, j)){
                 red += copy_image[i - 1][j - 1].rgbtRed;
                 blue += copy_image[i - 1][j - 1].rgbtBlue;
                 green += copy_image[i - 1][j - 1].rgbtGreen;
                 valid_pixel_cout++;
             }
 
-            if(upper_right_pixel_exists(height, width)){
+            if(upper_right_pixel_exists(j, height, width)){
                 red += copy_image[i - 1][j + 1].rgbtRed;
                 blue += copy_image[i - 1][j + 1].rgbtBlue;
                 green += copy_image[i - 1][j + 1].rgbtGreen;
@@ -205,9 +205,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             blue += copy_image[i][j].rgbtBlue;
             green += copy_image[i][j].rgbtGreen;
 
-            image[i][j].rgbtRed = (BYTE) round(red / valid_pixel_cout);
-            image[i][j].rgbtBlue = (BYTE) round(blue / valid_pixel_cout);
-            image[i][j].rgbtGreen = (BYTE) round(green / valid_pixel_cout);
+            image[i][j].rgbtRed = (BYTE) round(red / (valid_pixel_cout * 1.0));
+            image[i][j].rgbtBlue = (BYTE) round(blue / (valid_pixel_cout * 1.0));
+            image[i][j].rgbtGreen = (BYTE) round(green / (valid_pixel_cout * 1.0));
 
             //resetting values for next pixel
             red = 0;
