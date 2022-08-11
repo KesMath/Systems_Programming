@@ -18,6 +18,13 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
+BYTE return_smaller_value(double a, BYTE b){
+    if(a > b){
+        return b;
+    }
+    return (BYTE) a;
+}
+
 // Convert image to sepia
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -27,19 +34,9 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             double sephiaGreen = round((.349 * image[i][j].rgbtRed) + (.686 * image[i][j].rgbtGreen) + (.168 * image[i][j].rgbtBlue));
             double sephiaBlue  = round((.272 * image[i][j].rgbtRed) + (.534 * image[i][j].rgbtGreen) + (.131 * image[i][j].rgbtBlue));
 
-            if(sephiaRed > MAX_8_BIT_VALUE){
-                sephiaRed = MAX_8_BIT_VALUE;
-            }
-            if(sephiaGreen > MAX_8_BIT_VALUE){
-                sephiaGreen = MAX_8_BIT_VALUE;
-            }
-            if(sephiaBlue > MAX_8_BIT_VALUE){
-                sephiaBlue = MAX_8_BIT_VALUE;
-            }
-
-            image[i][j].rgbtRed   = (BYTE) sephiaRed;
-            image[i][j].rgbtGreen = (BYTE) sephiaGreen;
-            image[i][j].rgbtBlue  = (BYTE) sephiaBlue;               
+            image[i][j].rgbtRed   = return_smaller_value(sephiaRed, MAX_8_BIT_VALUE);
+            image[i][j].rgbtGreen = return_smaller_value(sephiaGreen, MAX_8_BIT_VALUE);
+            image[i][j].rgbtBlue  = return_smaller_value(sephiaBlue, MAX_8_BIT_VALUE);              
         }
     }
     return;
@@ -122,10 +119,16 @@ bool upper_right_pixel_exists(int height, int width){
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    //TODO: blurring algorithm must work on the ORIGINAL values of the image ... this current implementation will take averages on mutated values!!
+    // operate on a copy and mutate the original!
+     
     double red = 0;
     double green = 0;
     double blue = 0;
     int valid_pixel_cout = 1;
+    
+    
+    //RGBTRIPLE copyImage[height][width] = *image;
 
     for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
