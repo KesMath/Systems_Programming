@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="This%20is%20check50_files/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>This is check50.</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+
+            <h1>check50</h1>
+            <h2>cs50/problems/2022/x/filter/less</h2>
+            <hr>
+              
+                  
+                      <h3 style="color:green">:) helpers.c exists</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          checking that helpers.c exists...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) filter compiles</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running clang testing.c helpers.c -o testing -std=c11 -ggdb -lm...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) grayscale correctly filters single pixel with whole number average</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with pixel (20, 40, 90)
+                                          <br>
+                                      
+                                          running ./testing 0 0...
+                                          <br>
+                                      
+                                          checking for output "50 50 50\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) grayscale correctly filters single pixel without whole number average</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with pixel (27, 28, 28)
+                                          <br>
+                                      
+                                          running ./testing 0 1...
+                                          <br>
+                                      
+                                          checking for output "28 28 28\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) grayscale leaves alone pixels that are already gray</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with pixel (50, 50, 50)
+                                          <br>
+                                      
+                                          running ./testing 0 2...
+                                          <br>
+                                      
+                                          checking for output "50 50 50\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) grayscale correctly filters simple 3x3 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 3x3 image
+                                          <br>
+                                      
+                                          first row: (255, 0, 0), (255, 0, 0), (255, 0, 0)
+                                          <br>
+                                      
+                                          second row: (0, 255, 0), (0, 255, 0), (0, 255, 0)
+                                          <br>
+                                      
+                                          third row: (0, 0, 255), (0, 0, 255), (0, 0, 255)
+                                          <br>
+                                      
+                                          running ./testing 0 3...
+                                          <br>
+                                      
+                                          checking for output "85 85 
+85\n85 85 85\n85 85 85\n85 85 85\n85 85 85\n85 85 85\n85 85 85\n85 85 
+85\n85 85 85\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) grayscale correctly filters more complex 3x3 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 3x3 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160)
+                                          <br>
+                                      
+                                          third row: (200, 210, 220), (220, 230, 240), (240, 250, 255)
+                                          <br>
+                                      
+                                          running ./testing 0 4...
+                                          <br>
+                                      
+                                          checking for output "20 20 
+20\n50 50 50\n80 80 80\n127 127 127\n137 137 137\n147 147 147\n210 210 
+210\n230 230 230\n248 248 248\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) grayscale correctly filters 4x4 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 4x4 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90), (100, 110, 120)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160), (140, 160, 170)
+                                          <br>
+                                      
+                                          third row: (195, 204, 213), (205, 214, 223), (225, 234, 243), (245, 254, 253)
+                                          <br>
+                                      
+                                          fourth row: (50, 28, 90), (0, 0, 0), (255, 255, 255), (85, 85, 85)
+                                          <br>
+                                      
+                                          running ./testing 0 5...
+                                          <br>
+                                      
+                                          checking for output "20 20 
+20\n50 50 50\n80 80 80\n110 110 110\n127 127 127\n137 137 137\n147 147 
+147\n157 157 157\n204 204 204\n214 214 214\n234 234 234\n251 251 251\n56
+ 56 56\n0 0 0\n255 255 255\n85 85 85\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) sepia correctly filters single pixel</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with pixel (20, 40, 90)
+                                          <br>
+                                      
+                                          running ./testing 1 0...
+                                          <br>
+                                      
+                                          checking for output "56 50 39\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) sepia correctly filters simple 3x3 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 3x3 image
+                                          <br>
+                                      
+                                          first row: (255, 0, 0), (255, 0, 0), (255, 0, 0)
+                                          <br>
+                                      
+                                          second row: (0, 255, 0), (0, 255, 0), (0, 255, 0)
+                                          <br>
+                                      
+                                          third row: (0, 0, 255), (0, 0, 255), (0, 0, 255)
+                                          <br>
+                                      
+                                          running ./testing 1 3...
+                                          <br>
+                                      
+                                          checking for output "100 89 
+69\n100 89 69\n100 89 69\n196 175 136\n196 175 136\n196 175 136\n48 43 
+33\n48 43 33\n48 43 33\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) sepia correctly filters more complex 3x3 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 3x3 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160)
+                                          <br>
+                                      
+                                          third row: (200, 210, 220), (220, 230, 240), (240, 250, 255)
+                                          <br>
+                                      
+                                          running ./testing 1 4...
+                                          <br>
+                                      
+                                          checking for output "25 22 
+17\n66 58 45\n106 94 74\n170 151 118\n183 163 127\n197 175 136\n255 251 
+195\n255 255 214\n255 255 232\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) sepia correctly filters 4x4 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 4x4 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90), (100, 110, 120)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160), (140, 160, 170)
+                                          <br>
+                                      
+                                          third row: (195, 204, 213), (205, 214, 223), (225, 234, 243), (245, 254, 253)
+                                          <br>
+                                      
+                                          fourth row: (50, 28, 90), (0, 0, 0), (255, 255, 255), (85, 85, 85)
+                                          <br>
+                                      
+                                          running ./testing 1 5...
+                                          <br>
+                                      
+                                          checking for output "25 22 
+17\n66 58 45\n106 94 74\n147 131 102\n170 151 118\n183 163 127\n197 175 
+136\n210 187 146\n255 244 190\n255 255 199\n255 255 218\n255 255 235\n58
+ 52 40\n0 0 0\n255 255 239\n115 102 80\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) reflect correctly filters 1x2 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 1x2 image
+                                          <br>
+                                      
+                                          first row: (255, 0, 0), (0, 0, 255)
+                                          <br>
+                                      
+                                          running ./testing 2 0...
+                                          <br>
+                                      
+                                          checking for output "0 0 255\n255 0 0\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) reflect correctly filters 1x3 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 1x3 image
+                                          <br>
+                                      
+                                          first row: (255, 0, 0), (0, 255, 0), (0, 0, 255)
+                                          <br>
+                                      
+                                          running ./testing 2 1...
+                                          <br>
+                                      
+                                          checking for output "0 0 255\n0 255 0\n255 0 0\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) reflect correctly filters image that is its own mirror image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 3x3 image
+                                          <br>
+                                      
+                                          first row: (255, 0, 0), (255, 0, 0), (255, 0, 0)
+                                          <br>
+                                      
+                                          second row: (0, 255, 0), (0, 255, 0), (0, 255, 0)
+                                          <br>
+                                      
+                                          third row: (0, 0, 255), (0, 0, 255), (0, 0, 255)
+                                          <br>
+                                      
+                                          running ./testing 2 2...
+                                          <br>
+                                      
+                                          checking for output "255 0 
+0\n255 0 0\n255 0 0\n0 255 0\n0 255 0\n0 255 0\n0 0 255\n0 0 255\n0 0 
+255\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) reflect correctly filters 3x3 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 3x3 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160)
+                                          <br>
+                                      
+                                          third row: (200, 210, 220), (220, 230, 240), (240, 250, 255)
+                                          <br>
+                                      
+                                          running ./testing 2 3...
+                                          <br>
+                                      
+                                          checking for output "70 80 
+90\n40 50 60\n10 20 30\n130 150 160\n120 140 150\n110 130 140\n240 250 
+255\n220 230 240\n200 210 220\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) reflect correctly filters 4x4 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 4x4 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90), (100, 110, 120)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160), (140, 160, 170)
+                                          <br>
+                                      
+                                          third row: (195, 204, 213), (205, 214, 223), (225, 234, 243), (245, 254, 253)
+                                          <br>
+                                      
+                                          fourth row: (50, 28, 90), (0, 0, 0), (255, 255, 255), (85, 85, 85)
+                                          <br>
+                                      
+                                          running ./testing 2 4...
+                                          <br>
+                                      
+                                          checking for output "100 110 
+120\n70 80 90\n40 50 60\n10 20 30\n140 160 170\n130 150 160\n120 140 
+150\n110 130 140\n245 254 253\n225 234 243\n205 214 223\n195 204 213\n85
+ 85 85\n255 255 255\n0 0 0\n50 28 90\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) blur correctly filters middle pixel</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 3x3 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160)
+                                          <br>
+                                      
+                                          third row: (200, 210, 220), (220, 230, 240), (240, 250, 255)
+                                          <br>
+                                      
+                                          running ./testing 3 0...
+                                          <br>
+                                      
+                                          checking for output "127 140 149\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) blur correctly filters pixel on edge</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 3x3 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160)
+                                          <br>
+                                      
+                                          third row: (200, 210, 220), (220, 230, 240), (240, 250, 255)
+                                          <br>
+                                      
+                                          running ./testing 3 1...
+                                          <br>
+                                      
+                                          checking for output "80 95 105\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) blur correctly filters pixel in corner</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 3x3 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160)
+                                          <br>
+                                      
+                                          third row: (200, 210, 220), (220, 230, 240), (240, 250, 255)
+                                          <br>
+                                      
+                                          running ./testing 3 2...
+                                          <br>
+                                      
+                                          checking for output "70 85 95\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) blur correctly filters 3x3 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 3x3 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160)
+                                          <br>
+                                      
+                                          third row: (200, 210, 220), (220, 230, 240), (240, 250, 255)
+                                          <br>
+                                      
+                                          running ./testing 3 3...
+                                          <br>
+                                      
+                                          checking for output "70 85 
+95\n80 95 105\n90 105 115\n117 130 140\n127 140 149\n137 150 159\n163 
+178 188\n170 185 194\n178 193 201\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) blur correctly filters 4x4 image</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          testing with sample 4x4 image
+                                          <br>
+                                      
+                                          first row: (10, 20, 30), (40, 50, 60), (70, 80, 90), (100, 110, 120)
+                                          <br>
+                                      
+                                          second row: (110, 130, 140), (120, 140, 150), (130, 150, 160), (140, 160, 170)
+                                          <br>
+                                      
+                                          third row: (195, 204, 213), (205, 214, 223), (225, 234, 243), (245, 254, 253)
+                                          <br>
+                                      
+                                          fourth row: (50, 28, 90), (0, 0, 0), (255, 255, 255), (85, 85, 85)
+                                          <br>
+                                      
+                                          running ./testing 3 4...
+                                          <br>
+                                      
+                                          checking for output "70 85 
+95\n80 95 105\n100 115 125\n110 125 135\n113 126 136\n123 136 145\n142 
+155 163\n152 165 173\n113 119 136\n143 151 164\n156 166 171\n180 190 
+194\n113 112 132\n155 156 171\n169 174 177\n203 207 209\n"...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+
+            </div>
+        </div>
+    
+</body></html>
