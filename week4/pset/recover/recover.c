@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
     int jpeg_cout = -1;
 
     // read in 512 bytes at a time until memory card returns 0 bytes
-    // FIXME: almost valid but in order to fix loop continuity, reading a new buffer in after previous buffer contains jpeg header will affect file integrity!
     while(fread(buffer, 1, BLOCK_SIZE, memory_card_file) == BLOCK_SIZE){
         // check first 4 bytes to determine JPEG signature
         if(buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && 
@@ -57,6 +56,15 @@ int main(int argc, char *argv[])
             }
             // getting to this line means a new jpeg signature was found ... hence we close out file and jump back to outer loop conditional
             fclose(newFile);
+
+            // rewind file pointer back 512 bytes so first "IF" condition above can be satisfied
+            // if don't rewind, while condition above will essentially read in new 512 bytes into buffer,
+            // essentially skipping the buffer with the JPEG header, thereby affecting file integrity!
+            // hence we need to retard the file pointer for the sake of loop continuity
+
+            // Reference of negative offsets to move file pointer backwards
+            // https://www.oreilly.com/library/view/c-in-a/0596006977/re96.html
+            fseek(memory_card_file, (-1) * BLOCK_SIZE, SEEK_CUR);
         }
     }
     
