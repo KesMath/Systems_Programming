@@ -27,7 +27,8 @@ int main(int argc, char *argv[])
     int jpeg_cout = -1;
 
     // read in 512 bytes at a time until memory card returns 0 bytes
-    while(fread(buffer, BLOCK_SIZE, 1, memory_card_file) != 0){
+    // FIXME: almost valid but in order to fix loop continuity, reading a new buffer in after previous buffer contains jpeg header will affect file integrity!
+    while(fread(buffer, 1, BLOCK_SIZE, memory_card_file) == BLOCK_SIZE){
         // check first 4 bytes to determine JPEG signature
         if(buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && 
         (buffer[3] == 0xe0 || buffer[3] == 0xe1 || buffer[3] == 0xe2 || buffer[3] == 0xe3 ||
@@ -42,7 +43,8 @@ int main(int argc, char *argv[])
             fwrite(buffer, BLOCK_SIZE, 1, newFile);
 
             // keep writing to that file until another jpeg signature is found!
-            // Recall that JPEGs are stored back to back in memory card
+            // Recall that JPEGs are stored back to back in memory card which implies
+            // that we keep on appending those 512 bytes to a new file until first 4 bytes of a new 512 block contains JPEG sig! 
             fread(buffer, BLOCK_SIZE, 1, memory_card_file);
             while(buffer[0] != 0xff && buffer[1] != 0xd8 && buffer[2] != 0xff && 
                 !(buffer[3] == 0xe0 || buffer[3] == 0xe1 || buffer[3] == 0xe2 || buffer[3] == 0xe3 ||
@@ -50,7 +52,7 @@ int main(int argc, char *argv[])
                   buffer[3] == 0xe8 || buffer[3] == 0xe9 || buffer[3] == 0xea || buffer[3] == 0xeb ||
                   buffer[3] == 0xec || buffer[3] == 0xed || buffer[3] == 0xee || buffer[3] == 0xef)){
                 fwrite(buffer, BLOCK_SIZE, 1, newFile);
-                //read in 512 bytes of memory into buffer again after writing previous buffer into new file
+                //read in 512 bytes of memory_card into buffer again to keep buffer refreshed
                 fread(buffer, BLOCK_SIZE, 1, memory_card_file);
             }
             // getting to this line means a new jpeg signature was found ... hence we close out file and jump back to outer loop conditional
