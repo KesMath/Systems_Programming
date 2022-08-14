@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     // create an array buffer (optionally on the heap) 512 in length, each of 1 byte
     // the multiplier is not needed but it helps to show that each 'index' of this buffer is one byte/ 8 bits long
     BYTE *buffer = malloc(sizeof(BYTE) * BLOCK_SIZE);
-    char *filename = "000.jpg";
+    char *filename = malloc(sizeof(char) * 8);
     // need to capture and save first photo as 0th one!
     int jpeg_cout = -1;
 
@@ -70,5 +70,6 @@ int main(int argc, char *argv[])
     
     fclose(memory_card_file);
     free(buffer);
+    free(filename);
 
 }
