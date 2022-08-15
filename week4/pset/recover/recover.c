@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 const int BLOCK_SIZE = 512;
 typedef uint8_t BYTE;
+
+bool valid_jpeg_header(BYTE *buffer);
 
 int main(int argc, char *argv[])
 {
@@ -29,11 +32,7 @@ int main(int argc, char *argv[])
     // read in 512 bytes at a time until memory card returns 0 bytes
     while(fread(buffer, 1, BLOCK_SIZE, memory_card_file) == BLOCK_SIZE){
         // check first 4 bytes to determine JPEG signature
-        if(buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && 
-        (buffer[3] == 0xe0 || buffer[3] == 0xe1 || buffer[3] == 0xe2 || buffer[3] == 0xe3 ||
-         buffer[3] == 0xe4 || buffer[3] == 0xe5 || buffer[3] == 0xe6 || buffer[3] == 0xe7 ||
-         buffer[3] == 0xe8 || buffer[3] == 0xe9 || buffer[3] == 0xea || buffer[3] == 0xeb ||
-         buffer[3] == 0xec || buffer[3] == 0xed || buffer[3] == 0xee || buffer[3] == 0xef)){
+        if(valid_jpeg_header(buffer)){
 
             // create new file
             jpeg_cout++;
@@ -45,11 +44,7 @@ int main(int argc, char *argv[])
             // Recall that JPEGs are stored back to back in memory card which implies
             // that we keep on appending those 512 bytes to a new file until first 4 bytes of a new 512 block contains JPEG sig! 
             fread(buffer, BLOCK_SIZE, 1, memory_card_file);
-            while(buffer[0] != 0xff && buffer[1] != 0xd8 && buffer[2] != 0xff && 
-                !(buffer[3] == 0xe0 || buffer[3] == 0xe1 || buffer[3] == 0xe2 || buffer[3] == 0xe3 ||
-                  buffer[3] == 0xe4 || buffer[3] == 0xe5 || buffer[3] == 0xe6 || buffer[3] == 0xe7 ||
-                  buffer[3] == 0xe8 || buffer[3] == 0xe9 || buffer[3] == 0xea || buffer[3] == 0xeb ||
-                  buffer[3] == 0xec || buffer[3] == 0xed || buffer[3] == 0xee || buffer[3] == 0xef)){
+            while(!valid_jpeg_header(buffer)){
                 fwrite(buffer, BLOCK_SIZE, 1, newFile);
                 //read in 512 bytes of memory_card into buffer again to keep buffer refreshed
                 fread(buffer, BLOCK_SIZE, 1, memory_card_file);
@@ -71,5 +66,17 @@ int main(int argc, char *argv[])
     fclose(memory_card_file);
     free(buffer);
     free(filename);
+    return 0;
 
+}
+
+bool valid_jpeg_header(BYTE *buffer){
+    if(buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && 
+   (buffer[3] == 0xe0 || buffer[3] == 0xe1 || buffer[3] == 0xe2 || buffer[3] == 0xe3 ||
+    buffer[3] == 0xe4 || buffer[3] == 0xe5 || buffer[3] == 0xe6 || buffer[3] == 0xe7 ||
+    buffer[3] == 0xe8 || buffer[3] == 0xe9 || buffer[3] == 0xea || buffer[3] == 0xeb ||
+    buffer[3] == 0xec || buffer[3] == 0xed || buffer[3] == 0xee || buffer[3] == 0xef)){
+        return true;
+    }
+    return false;
 }
