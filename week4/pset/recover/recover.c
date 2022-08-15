@@ -38,16 +38,18 @@ int main(int argc, char *argv[])
             jpeg_cout++;
             sprintf(filename, "%03i.jpg", jpeg_cout);
             FILE *newFile = fopen(filename, "w");
-            fwrite(buffer, BLOCK_SIZE, 1, newFile);
+            fwrite(buffer, 1, BLOCK_SIZE, newFile);
 
             // keep writing to that file until another jpeg signature is found!
             // Recall that JPEGs are stored back to back in memory card which implies
             // that we keep on appending those 512 bytes to a new file until first 4 bytes of a new 512 block contains JPEG sig! 
-            fread(buffer, BLOCK_SIZE, 1, memory_card_file);
+            fread(buffer, 1, BLOCK_SIZE, memory_card_file);
             while(!valid_jpeg_header(buffer)){
-                fwrite(buffer, BLOCK_SIZE, 1, newFile);
+                fwrite(buffer, 1, BLOCK_SIZE, newFile);
                 //read in 512 bytes of memory_card into buffer again to keep buffer refreshed
-                fread(buffer, BLOCK_SIZE, 1, memory_card_file);
+                if (fread(buffer, 1, BLOCK_SIZE, memory_card_file) != BLOCK_SIZE){
+                    break;
+                }
             }
             // getting to this line means a new jpeg signature was found ... hence we close out file and jump back to outer loop conditional
             fclose(newFile);
