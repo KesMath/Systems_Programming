@@ -40,7 +40,13 @@ int main(void)
 person *create_family(int generations)
 {
     // TODO: Allocate memory for new person
+    // how does sizeof() know how many bytes to return when an attribute is a recursive structure?? i.e. char alleles[2] is 2 bytes + 8 bytes for pointer so 10 bytes?
+    person *p = malloc(sizeof(person));
+    printf("Bytes of Person Struct: %i\n", sizeof(person));
 
+    if (p == NULL){
+        return 1;
+    }
     // If there are still generations left to create
     if (generations > 1)
     {
@@ -55,16 +61,20 @@ person *create_family(int generations)
     }
 
     // If there are no generations left to create
+    // this is grandparents node
     else
     {
         // TODO: Set parent pointers to NULL
-
+        p->parents[0] = NULL;
+        p->parents[1] = NULL;
         // TODO: Randomly assign alleles
+        p->alleles[0] = random_allele();
+        p->alleles[1] = random_allele();
 
     }
 
     // TODO: Return newly created person
-    return NULL;
+    return p;
 }
 
 // Free `p` and all ancestors of `p`.
