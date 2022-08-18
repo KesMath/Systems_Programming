@@ -24,6 +24,10 @@ char random_allele();
 int main(void)
 {
     // Seed random number generator
+    // In more details, if srand() is not called prior to calling rand()
+    // rand() would produce same output of random numbers on every successive program execution
+    // making one's program deterministic/ predictable which is not the intention when dealing with randomness
+    // where the creator seeks to create a non-determinsitic/ unpredictable resultss
     srand(time(0));
 
     // Create a new family with three generations
@@ -40,7 +44,7 @@ int main(void)
 person *create_family(int generations)
 {
     // TODO: Allocate memory for new person
-    // how does sizeof() know how many bytes to return when an attribute is a recursive structure?? i.e. char alleles[2] is 2 bytes + 8 bytes for pointer so 10 bytes?
+    // how does sizeof() know how many bytes to return when an attribute is a recursive structure?? i.e. char alleles[2] is 1 byte * (2 char) + 8 bytes * (2 pointers) for pointer so 18 bytes?
     person *p = malloc(sizeof(person));
     printf("Bytes of Person Struct: %i\n", sizeof(person));
 
@@ -55,13 +59,20 @@ person *create_family(int generations)
         person *parent1 = create_family(generations - 1);
 
         // TODO: Set parent pointers for current person
+        p->parents[0] = parent0;
+        p->parents[1] = parent1;
 
         // TODO: Randomly assign current person's alleles based on the alleles of their parents
+
+        //To return a pseudorandom integer between 0 and N ... where N in this case is 1
+        int rand_index = (random() / ((double) RAND_MAX + 1)) * 1;
+        p->alleles[0] = parent0->alleles[rand_index];
+        p->alleles[1] = parent1->alleles[rand_index];
 
     }
 
     // If there are no generations left to create
-    // this is grandparents node
+    // this is grandparents node or base case
     else
     {
         // TODO: Set parent pointers to NULL
