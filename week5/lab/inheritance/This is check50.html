@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="This%20is%20check50_files/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>This is check50.</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+
+            <h1>check50</h1>
+            <h2>cs50/labs/2022/x/inheritance</h2>
+            <hr>
+              
+                  
+                      <h3 style="color:green">:) inheritance.c exists</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          checking that inheritance.c exists...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) inheritance compiles</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running clang inheritance.c -o inheritance -std=c11 -ggdb -lm -lcs50...
+                                          <br>
+                                      
+                                          running clang inheritance_test.c -o inheritance_test -std=c11 -ggdb -lm -lcs50...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) create_family creates correct size of family</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./inheritance_test...
+                                          <br>
+                                      
+                                          checking for output "size_true.*"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) create_family follows inheritance rules 1</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./inheritance_test...
+                                          <br>
+                                      
+                                          checking for output ".*allele_true.*"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) create_family follows inheritance rules 2</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./inheritance_test...
+                                          <br>
+                                      
+                                          checking for output ".*allele_true.*"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) create_family follows inheritance rules 3</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./inheritance_test...
+                                          <br>
+                                      
+                                          checking for output ".*allele_true.*"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) free_family results in no memory leakages</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running valgrind 
+--show-leak-kinds=all --xml=yes --xml-file=/tmp/tmplt4_1boa -- 
+./inheritance...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                          checking for valgrind errors...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+
+            </div>
+        </div>
+    
+</body></html>
