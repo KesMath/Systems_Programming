@@ -25,7 +25,20 @@ node *table[N];
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
-    // TODO
+    int hashCode = hash(word);
+    node *n = table[hashCode];
+    if(n == NULL){
+        return false;
+    }
+    //FIXME: consider resetting pointer back to head for subsequent calls to check()!
+    // As it stands, table[hashCode] has n == NULL so subsequent calls to the same
+    // bucket or hashcode will ALWAYS result to false since pointer is at the terminal tail and not the head! 
+    while(n != NULL){
+        if(strcmp(n->word, word) == 0){
+            return true;
+        }
+        n = n->next;
+    }
     return false;
 }
 
