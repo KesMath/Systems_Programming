@@ -57,7 +57,7 @@ bool load(const char *dictionary)
         node *n = malloc(sizeof(node));
         if(n == NULL){
             printf("Not enough memory on heap to create new node");
-            // call upload() here to free up already created nodes
+            unload();
             fclose(file);
             return false;
         }
