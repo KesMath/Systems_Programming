@@ -14,6 +14,8 @@ typedef struct node
 }
 node;
 
+unsigned int sizeofHashTable = 0;
+
 // TODO: Choose number of buckets in hash table
 const unsigned int N = 26;
 
@@ -77,6 +79,7 @@ bool load(const char *dictionary)
             // so that when next node, N1 comes in, we have N0 -> OLD_HEAD linkage setup such that N1 -> N0-> OLD_HEAD
             table[hashCode] = n;
         }
+        sizeofHashTable++;
     }
 
     fclose(file);
@@ -86,8 +89,7 @@ bool load(const char *dictionary)
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
 unsigned int size(void)
 {
-    // TODO
-    return 0;
+    return sizeofHashTable;
 }
 
 // Unloads dictionary from memory, returning true if successful, else false
