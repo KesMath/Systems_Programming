@@ -30,6 +30,9 @@ bool check(const char *word)
 unsigned int hash(const char *word)
 {
     // TODO: Improve this hash function
+    // one optimization route is to create buckets for all permutations of 26^(first n characters) - (set of first n characters from all 100k dictionary items)
+    // essentially doing a set subtraction problem in order to get the benefit of shortened chains (for search performance) without the wasted space having unnecessary buckets
+    // then we can do (int)(word[0] + word[1] + word[2] + ... word[n]) as our improved hash function!
     return toupper(word[0]) - 'A';
 }
 
