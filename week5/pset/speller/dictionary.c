@@ -2,7 +2,8 @@
 
 #include <ctype.h>
 #include <stdbool.h>
-
+#include <stdio.h>
+#include <string.h>
 #include "dictionary.h"
 
 // Represents a node in a hash table
@@ -39,8 +40,43 @@ unsigned int hash(const char *word)
 // Loads dictionary into memory, returning true if successful, else false
 bool load(const char *dictionary)
 {
-    // TODO
-    return false;
+    char *buffer[LENGTH + 1];
+    //TODO: try with char *buffer = malloc(sizeof(LENGTH + 1));
+    FILE *file = fopen(dictionary, "r");
+    if (file == NULL){
+        printf("Cannot open file: %s", dictionary);
+        return false;
+    }
+
+    // QUESTION: so fscanf() can take either a pointer or value at that address to store strings??
+    // Seeing discrepancies in examples: https://www.ibm.com/docs/en/i/7.1?topic=functions-fscanf-read-formatted-data
+    // https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm
+    while(fscanf(file, "%s", buffer) != EOF){
+        printf("Buffer address: %p", &buffer);
+        int hashCode = hash(buffer);
+        node *n = malloc(sizeof(node));
+        if(n == NULL){
+            printf("Not enough memory on heap to create new node");
+            // call upload() here to free up already created nodes
+            fclose(file);
+            return false;
+        }
+        strcpy(n->word, buffer);
+
+        // insertion of first node in bucket or index
+        if(table[hashCode] == NULL){
+            table[hashCode] = n;
+        }
+        // chaining nodes within a given bucket or index
+        else{
+            node *head = table[hashCode];
+            n->next = head;
+            table[hashCode] = n;
+        }
+    }
+
+    fclose(file);
+    return true;
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
