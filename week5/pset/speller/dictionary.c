@@ -69,8 +69,12 @@ bool load(const char *dictionary)
         }
         // chaining nodes within a given bucket or index
         else{
+            // get reference to first element in link list @ index hashCode
             node *head = table[hashCode];
+            // declaring new node n to be the first link
             n->next = head;
+            // setting new node as the head of the list
+            // so that when next node, N1 comes in, we have N0 -> OLD_HEAD linkage setup such that N1 -> N0-> OLD_HEAD
             table[hashCode] = n;
         }
     }
