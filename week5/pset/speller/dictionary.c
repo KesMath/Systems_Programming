@@ -108,9 +108,18 @@ unsigned int size(void)
     return sizeofHashTable;
 }
 
+void free_list(node *n){
+    if(n->next != NULL){
+        free_list(n->next);
+    }
+    free(n);
+}
+
 // Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
-    // TODO
-    return false;
+    for(int i = 0; i < N; i++){
+        free_list(table[i]);
+    }
+    return true;
 }
