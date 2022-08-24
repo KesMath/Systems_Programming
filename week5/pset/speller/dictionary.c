@@ -34,7 +34,7 @@ bool check(const char *word)
     // As it stands, table[hashCode] has n == NULL so subsequent calls to the same
     // bucket or hashcode will ALWAYS result to false since pointer is at the terminal tail and not the head! 
     while(n != NULL){
-        if(strcmp(n->word, word) == 0){
+        if(strcasecmp(n->word, word) == 0){
             return true;
         }
         n = n->next;
