@@ -30,9 +30,12 @@ bool check(const char *word)
     if(n == NULL){
         return false;
     }
-    //FIXME: consider resetting pointer back to head for subsequent calls to check()!
+    // FIXME: consider resetting pointer back to head for subsequent calls to check()!
     // As it stands, table[hashCode] has n == NULL so subsequent calls to the same
     // bucket or hashcode will ALWAYS result to false since pointer is at the terminal tail and not the head! 
+
+    // On second thought, given that we're not setting table[hashcode] = n
+    // n pointer is just a local variable within a stackframe that gets freed upon function return
     while(n != NULL){
         if(strcasecmp(n->word, word) == 0){
             return true;
