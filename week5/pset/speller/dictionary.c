@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "dictionary.h"
 
 // Represents a node in a hash table
@@ -58,8 +59,8 @@ unsigned int hash(const char *word)
 // Loads dictionary into memory, returning true if successful, else false
 bool load(const char *dictionary)
 {
-    char *buffer[LENGTH + 1];
-    //TODO: try with char *buffer = malloc(sizeof(LENGTH + 1));
+    char buffer[LENGTH + 1];
+    // Synonymous but saving on heap: char *buffer = malloc(sizeof(LENGTH + 1));
     FILE *file = fopen(dictionary, "r");
     if (file == NULL){
         printf("Cannot open file: %s", dictionary);
