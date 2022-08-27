@@ -112,7 +112,9 @@ void free_list(node *n){
     if(n->next != NULL){
         free_list(n->next);
     }
+    printf("freeing %p...\n", n);
     free(n);
+    printf("freed %p...\n", n);
 }
 
 // Unloads dictionary from memory, returning true if successful, else false
