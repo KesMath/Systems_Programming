@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <strings.h>
 #include <string.h>
 #include <stdlib.h>
 #include "dictionary.h"
@@ -112,9 +113,10 @@ void free_list(node *n){
     if(n->next != NULL){
         free_list(n->next);
     }
-    printf("freeing %p...\n", n);
+    //printf("freeing %p...\n", n);
     free(n);
-    printf("freed %p...\n", n);
+    //printf("freed %p...\n", n);
+    //printf("value at %p: %s\n", n, n->word);
 }
 
 // Unloads dictionary from memory, returning true if successful, else false
