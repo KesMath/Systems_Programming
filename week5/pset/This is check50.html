@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="This%20is%20check50_files/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>This is check50.</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+
+            <h1>check50</h1>
+            <h2>cs50/problems/2022/x/speller</h2>
+            <hr>
+              
+                  
+                      <h3 style="color:green">:) dictionary.c exists</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          checking that dictionary.c exists...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) speller compiles</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running make...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) handles most basic words properly</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./speller basic/dict basic/text...
+                                          <br>
+                                      
+                                          checking for output 
+"MISSPELLED WORDS\n\n\nWORDS MISSPELLED:     0\nWORDS IN DICTIONARY:  
+8\nWORDS IN TEXT:        9\n"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) handles min length (1-char) words</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./speller min_length/dict min_length/text...
+                                          <br>
+                                      
+                                          checking for output 
+"MISSPELLED WORDS\n\n\nWORDS MISSPELLED:     0\nWORDS IN DICTIONARY:  
+1\nWORDS IN TEXT:        1\n"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) handles max length (45-char) words</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./speller max_length/dict max_length/text...
+                                          <br>
+                                      
+                                          checking for output 
+"MISSPELLED WORDS\n\n\nWORDS MISSPELLED:     0\nWORDS IN DICTIONARY:  
+1\nWORDS IN TEXT:        1\n"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) handles words with apostrophes properly</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./speller apostrophe/without/dict apostrophe/with/text...
+                                          <br>
+                                      
+                                          checking for output 
+"MISSPELLED WORDS\n\nfoo's\n\nWORDS MISSPELLED:     1\nWORDS IN 
+DICTIONARY:  1\nWORDS IN TEXT:        1\n"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                          running ./speller apostrophe/with/dict apostrophe/without/text...
+                                          <br>
+                                      
+                                          checking for output 
+"MISSPELLED WORDS\n\nfoo\nfoO\nfOo\nFoo\nfOO\nFoO\nFOo\nFOO\n\nWORDS 
+MISSPELLED:     8\nWORDS IN DICTIONARY:  1\nWORDS IN TEXT:        
+8\n"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                          running ./speller apostrophe/with/dict apostrophe/with/text...
+                                          <br>
+                                      
+                                          checking for output 
+"MISSPELLED WORDS\n\n\nWORDS MISSPELLED:     0\nWORDS IN DICTIONARY:  
+1\nWORDS IN TEXT:        1\n"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) spell-checking is case-insensitive</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./speller case/dict case/text...
+                                          <br>
+                                      
+                                          checking for output 
+"MISSPELLED WORDS\n\n\nWORDS MISSPELLED:     0\nWORDS IN DICTIONARY:  
+1\nWORDS IN TEXT:        8\n"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) handles substrings properly</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running ./speller substring/dict substring/text...
+                                          <br>
+                                      
+                                          checking for output 
+"MISSPELLED WORDS\n\nca\ncats\ncaterpill\ncaterpillars\n\nWORDS 
+MISSPELLED:     4\nWORDS IN DICTIONARY:  2\nWORDS IN TEXT:        
+6\n"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+                  
+                      <h3 style="color:green">:) program is free of memory errors</h3>
+                  
+
+                  
+                      <div class="well well-sm">
+                          
+                          
+
+                          
+                          
+                              <samp>
+                                  <b>Log</b><br>
+                                  <div style="border:2px solid; padding:2px; max-height:20em; overflow:scroll;">
+                                      
+                                          running valgrind 
+--show-leak-kinds=all --xml=yes --xml-file=/tmp/tmpu90s4uu5 -- ./speller
+ substring/dict substring/text...
+                                          <br>
+                                      
+                                          checking for output 
+"MISSPELLED WORDS\n\nca\ncats\ncaterpill\ncaterpillars\n\nWORDS 
+MISSPELLED:     4\nWORDS IN DICTIONARY:  2\nWORDS IN TEXT:        
+6\n"...
+                                          <br>
+                                      
+                                          checking that program exited with status 0...
+                                          <br>
+                                      
+                                          checking for valgrind errors...
+                                          <br>
+                                      
+                                  </div>
+                              </samp>
+                          
+
+                          
+
+                          
+                          
+
+                          
+                          
+
+                      </div>
+                  
+              
+
+            </div>
+        </div>
+    
+</body></html>
