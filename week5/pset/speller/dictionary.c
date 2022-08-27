@@ -73,7 +73,7 @@ bool load(const char *dictionary)
     // https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm
     while(fscanf(file, "%s", buffer) != EOF){
         int hashCode = hash(buffer);
-        node *n = malloc(sizeof(node));
+        node *n = calloc(1, sizeof(node));
         if(n == NULL){
             printf("Not enough memory on heap to create new node");
             unload();
