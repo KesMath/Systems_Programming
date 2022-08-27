@@ -71,7 +71,6 @@ bool load(const char *dictionary)
     // Seeing discrepancies in examples: https://www.ibm.com/docs/en/i/7.1?topic=functions-fscanf-read-formatted-data
     // https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm
     while(fscanf(file, "%s", buffer) != EOF){
-        printf("Buffer address: %p", &buffer);
         int hashCode = hash(buffer);
         node *n = malloc(sizeof(node));
         if(n == NULL){
@@ -120,7 +119,9 @@ void free_list(node *n){
 bool unload(void)
 {
     for(int i = 0; i < N; i++){
-        free_list(table[i]);
+        if(table[i] != NULL){
+            free_list(table[i]);
+        }
     }
     return true;
 }
