@@ -156,4 +156,3 @@ char random_allele()
         return 'O';
     }
 }
-
