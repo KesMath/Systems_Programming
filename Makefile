@@ -3,5 +3,5 @@
 SANITIZER_FLAGS = -fsanitize=undefined -fsanitize=bounds -fsanitize=address -fsanitize=leak
 
 
-shell:
-	gcc -std=c11 -Wall -Werror -Wshadow ${SANITIZER_FLAGS} -g -O3 wish.c -o wish
+list_cout:
+	gcc -std=c11 -Wall -Werror -Wshadow ${SANITIZER_FLAGS} -g -O3 data_struct/linked_list_len_cout.c -o data_struct/linked_list_len_cout
