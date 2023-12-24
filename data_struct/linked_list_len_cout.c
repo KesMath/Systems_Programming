@@ -35,6 +35,19 @@ size_t list_count (struct Node *list, int search_val)
     return cout;
 }
 
+struct Node* createAndAppendNode(struct Node * start, int value){
+    // creates a node, sets member value to value, and appends node to start
+    struct Node* node = (struct Node*) malloc(sizeof(struct Node));
+    if(node == NULL){
+        printf("Not enough heap space for allocation");
+        exit(-1);
+    }
+    node->value = value;
+    start->next = node;
+    return node; 
+}   
+
+
 void free_list(struct Node* head){
     while(head != NULL){
         struct Node* next_ptr = head->next;
@@ -43,24 +56,26 @@ void free_list(struct Node* head){
     }
 }
 
+void print_list(struct Node* head){
+    struct Node* tmp = head;
+    while(tmp!=NULL){
+        printf("Address: %p, ", tmp);
+        printf("Value: %i\n", tmp->value);
+        tmp = tmp->next;
+    }
+}
+
 int main(void){
     struct Node* head = (struct Node*) malloc(sizeof(struct Node));
-    struct Node* node1 = (struct Node*) malloc(sizeof(struct Node));;
-    struct Node* node2 = (struct Node*) malloc(sizeof(struct Node));;
-    struct Node* node3 = (struct Node*) malloc(sizeof(struct Node));;
-    
     head->value = 0;
-    head->next = node1;
 
-    node1->value = 1;
-    node1->next = node2;
-
-    node2->value = 2;
-    node2->next = node3;
-
-    node3->value = 2;
+    struct Node* node1 = createAndAppendNode(head, 1);
+    struct Node* node2 = createAndAppendNode(node1, 2);
+    struct Node* node3 = createAndAppendNode(node2, 2);
     node3->next = NULL;
 
+    print_list(head);
+    
     printf("Length of List: %li\n", list_length(head));
     printf("Cout Occurrence: %li\n", list_count(head, 2));
     free_list(head);
