@@ -10,18 +10,29 @@ struct Node {
 };
 
 // returns the length of the list
-size_t list_length (const struct Node *list)
-{
-	while(list != NULL){
-        printf("%i\n", list->value);
-        list = list->next;
+size_t list_length (struct Node *list){
+    size_t cout = 0;
+    struct Node *ptr = list; // creating copy of pointer to do computation within this stack frame so we do not actually mutate original pointer
+	while(ptr != NULL){
+        cout++;
+        ptr = ptr->next;
     }
-    return 0;
+    return cout;
 }
+
+
 // returns the number of occurences of search_val in list
-size_t list_count (const struct Node *list, int search_val)
+size_t list_count (struct Node *list, int search_val)
 {
-	return 0;
+    size_t cout = 0;
+    struct Node *ptr = list; // creating copy of pointer to do computation within this stack frame so we do not actually mutate original pointer
+	while(ptr != NULL){
+        if(ptr->value == search_val){
+            cout++;
+        }
+        ptr = ptr->next;
+    }
+    return cout;
 }
 
 void free_list(struct Node* head){
@@ -47,12 +58,11 @@ int main(void){
     node2->value = 2;
     node2->next = node3;
 
-    node3->value = 3;
+    node3->value = 2;
     node3->next = NULL;
-    // FIXME: shouldn't head ptr be at the tail of the list?!
-    printf("%li\n", list_length(head));
-    //printf("%li\n", list_count(head, 8));
 
+    printf("Length of List: %li\n", list_length(head));
+    printf("Cout Occurrence: %li\n", list_count(head, 2));
     free_list(head);
 
 }
