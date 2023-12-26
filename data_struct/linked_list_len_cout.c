@@ -45,7 +45,18 @@ struct Node* createAndAppendNode(struct Node * start, int value){
     node->value = value;
     start->next = node;
     return node; 
-}   
+}
+
+struct Node * get_nth_node(struct Node * head, size_t n){
+    struct Node* tmp = head;
+    while(tmp != NULL){
+        if (tmp->value == n){
+            return tmp;
+        }
+        tmp = tmp->next;
+    }
+    return NULL;
+}
 
 
 void free_list(struct Node* head){
@@ -75,6 +86,8 @@ int main(void){
     node3->next = NULL;
 
     print_list(head);
+
+    printf("%p/n", get_nth_node(head, 0));
     
     printf("Length of List: %li\n", list_length(head));
     printf("Cout Occurrence: %li\n", list_count(head, 2));
