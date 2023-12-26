@@ -51,13 +51,11 @@ struct Node * get_nth_node(struct Node * head, size_t n){
     // Codewar Kata: Linked Lists - Get Nth Node
     // https://www.codewars.com/kata/55befc42bfe4d13ab1000007/train/c
     struct Node* tmp = head;
-    while(tmp != NULL){
-        if (tmp->value == n){
-            return tmp;
-        }
+    while(n != 0){
         tmp = tmp->next;
+        n--;
     }
-    return NULL;
+    return tmp;
 }
 
 
@@ -89,7 +87,7 @@ int main(void){
 
     print_list(head);
 
-    printf("%p/n", get_nth_node(head, 0));
+    printf("%p\n", get_nth_node(head, 0));
     
     printf("Length of List: %li\n", list_length(head));
     printf("Cout Occurrence: %li\n", list_count(head, 2));
