@@ -48,6 +48,8 @@ struct Node* createAndAppendNode(struct Node * start, int value){
 }
 
 struct Node * get_nth_node(struct Node * head, size_t n){
+    // Codewar Kata: Linked Lists - Get Nth Node
+    // https://www.codewars.com/kata/55befc42bfe4d13ab1000007/train/c
     struct Node* tmp = head;
     while(tmp != NULL){
         if (tmp->value == n){
