@@ -9,6 +9,7 @@ struct Node {
 	int value;
 };
 
+
 // returns the length of the list
 size_t list_length (struct Node *list){
     size_t cout = 0;
@@ -47,7 +48,7 @@ struct Node* createAndAppendNode(struct Node * start, int value){
     return node; 
 }
 
-struct Node * get_nth_node(struct Node * head, size_t n){
+struct Node* get_nth_node(struct Node* head, size_t n){
     // Codewar Kata: Linked Lists - Get Nth Node
     // https://www.codewars.com/kata/55befc42bfe4d13ab1000007/train/c
     struct Node* tmp = head;
@@ -56,6 +57,32 @@ struct Node * get_nth_node(struct Node * head, size_t n){
         n--;
     }
     return tmp;
+}
+
+struct Node* swap_node_pairs(struct Node *head)
+{
+    return head;
+}
+
+struct Node* remove_at_index(struct Node* head, size_t index){
+    struct Node* tmp = head;
+    if (index == 0){
+        head = head->next;
+    }
+    else{
+        struct Node* previous = NULL;
+        // traverse to designated index in list
+        while(index > 0){
+            previous = tmp;
+            tmp = tmp->next;
+            index--;
+        }
+        
+        previous->next = tmp->next;
+    }
+    // free orphaned node!!
+    free(tmp);
+    return head;
 }
 
 
@@ -69,7 +96,7 @@ void free_list(struct Node* head){
 
 void print_list(struct Node* head){
     struct Node* tmp = head;
-    while(tmp!=NULL){
+    while(tmp != NULL){
         printf("Address: %p, ", tmp);
         printf("Value: %i\n", tmp->value);
         tmp = tmp->next;
@@ -82,15 +109,17 @@ int main(void){
 
     struct Node* node1 = createAndAppendNode(head, 1);
     struct Node* node2 = createAndAppendNode(node1, 2);
-    struct Node* node3 = createAndAppendNode(node2, 2);
+    struct Node* node3 = createAndAppendNode(node2, 3);
     node3->next = NULL;
 
     print_list(head);
-
-    printf("%p\n", get_nth_node(head, 0));
+    struct Node* lst = remove_at_index(head, 2);
+    printf("%s\n", "here");
+    print_list(lst);
+    // printf("%p\n", get_nth_node(head, 0));
     
-    printf("Length of List: %li\n", list_length(head));
-    printf("Cout Occurrence: %li\n", list_count(head, 2));
+    // printf("Length of List: %li\n", list_length(head));
+    // printf("Count Occurrence: %li\n", list_count(head, 2));
     free_list(head);
 
 }
