@@ -3,11 +3,32 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 struct Node {
 	struct Node *next;
 	int value;
 };
+
+size_t list_length (struct Node *list);
+size_t list_count (struct Node *list, int search_val);
+
+struct Node* create_node(int value);
+void append_node(struct Node* node1, struct Node* node2);
+
+void add_at_head(struct Node* head, size_t n);
+void add_at_tail(struct Node* head, size_t n);
+struct Node* get_nth_node(struct Node* head, size_t n);
+
+// FIXME
+void swap_pair(struct Node* node1, struct Node* node2);
+struct Node* swap_node_pairs(struct Node *head);
+
+void remove_at_index(struct Node* head, size_t index);
+//void add_at_index(struct Node* head, size_t index, size_t n);
+
+void free_list(struct Node* head);
+void print_list(struct Node* head);
 
 
 // returns the length of the list
@@ -36,7 +57,7 @@ size_t list_count (struct Node *list, int search_val)
     return cout;
 }
 
-struct Node* createAndAppendNode(struct Node * start, int value){
+struct Node* create_node(int value){
     // creates a node, sets member value to value, and appends node to start
     struct Node* node = (struct Node*) malloc(sizeof(struct Node));
     if(node == NULL){
@@ -44,8 +65,12 @@ struct Node* createAndAppendNode(struct Node * start, int value){
         exit(-1);
     }
     node->value = value;
-    start->next = node;
+    node->next = NULL;
     return node; 
+}
+
+void append_node(struct Node* node1, struct Node* node2){
+    node1->next = node2;
 }
 
 struct Node* get_nth_node(struct Node* head, size_t n){
@@ -59,12 +84,51 @@ struct Node* get_nth_node(struct Node* head, size_t n){
     return tmp;
 }
 
-struct Node* swap_node_pairs(struct Node *head)
-{
+void swap_pair(struct Node* node1, struct Node* node2){
+    // printf("%p\n", node1);
+    // printf("%p\n", node2);
+    struct Node* tmp = node1;
+    node1 = node2;
+    node2 = tmp;
+    // printf("%p\n", node1);
+    // printf("%p\n", node2);
+    //print_list(node1);
+    //printf("%s\n", "next node");
+    //print_list(node2);
+}
+
+struct Node* swap_node_pairs(struct Node *head){
+    // Codewar Kata: Swap Node Pairs In Linked List
+    // https://www.codewars.com/kata/59c6f43c2963ecf6bf002252/train/c
+    struct Node* ptr = head;
+    bool isEven = false;
+
+    size_t len = list_length(head);
+    if (len % 2 == 0){
+        isEven = true;
+    }
+    if (isEven){
+        while(ptr != NULL){
+            swap_pair(ptr, ptr->next);
+            ptr = ptr->next->next;
+        }
+    }
+    else{
+        while(ptr != NULL){
+            swap_pair(ptr, ptr->next);
+            ptr = ptr->next->next;
+            // eager check in order to prevent swapping with NULL ptr
+            // recall that if len is odd, we only swap the first even pairs (up to and excluding the odd one) 
+            if(ptr->next == NULL){
+                break; 
+            }
+        }
+    }
     return head;
 }
 
-struct Node* remove_at_index(struct Node* head, size_t index){
+void remove_at_index(struct Node* head, size_t index){
+    //FIXME: Use-after-free when index == 0?!
     struct Node* tmp = head;
     if (index == 0){
         head = head->next;
@@ -72,17 +136,20 @@ struct Node* remove_at_index(struct Node* head, size_t index){
     else{
         struct Node* previous = NULL;
         // traverse to designated index in list
-        while(index > 0){
+        while(index > 0 && tmp != NULL){
             previous = tmp;
             tmp = tmp->next;
             index--;
         }
         
-        previous->next = tmp->next;
+        // would be best to have come capacity global to prevent NULL reads
+        if (tmp != NULL){
+            previous->next = tmp->next;
+        }
     }
     // free orphaned node!!
     free(tmp);
-    return head;
+    printf("%p\n", head);
 }
 
 
@@ -103,21 +170,52 @@ void print_list(struct Node* head){
     }
 }
 
-int main(void){
-    struct Node* head = (struct Node*) malloc(sizeof(struct Node));
-    head->value = 0;
+void add_at_tail(struct Node* head, size_t n){
+    struct Node* tmp = head;
+    size_t len = list_length(head);
+    while(len > 1){
+        tmp = tmp->next;
+        len--;
+    }
+    struct Node* node = create_node(n);
+    append_node(tmp, node);
+}
 
-    struct Node* node1 = createAndAppendNode(head, 1);
-    struct Node* node2 = createAndAppendNode(node1, 2);
-    struct Node* node3 = createAndAppendNode(node2, 3);
-    node3->next = NULL;
-
-    print_list(head);
-    struct Node* lst = remove_at_index(head, 2);
-    printf("%s\n", "here");
-    print_list(lst);
-    // printf("%p\n", get_nth_node(head, 0));
+void add_at_head(struct Node* head, size_t n){
     
+}
+
+int main(void){
+    struct Node* head = create_node(0);
+
+    int i = 1;
+    struct Node* tmp = head;
+    while(i <= 20){
+        struct Node* node = create_node(i);
+        append_node(tmp, node);
+        tmp = node;
+        i++;
+    }
+
+    // deleting an arbitrary node
+    //print_list(head);
+    // remove_at_index(head, 20);
+    // print_list(head);
+
+    // swap node
+    //swap_pair(head, head->next);
+    //print_list(head);
+
+
+    //add at tail
+    print_list(head);
+    add_at_tail(head, 4);
+    add_at_tail(head, 5);
+    add_at_tail(head, 6);
+    print_list(head);
+
+    // other misc stats
+    // printf("%p\n", get_nth_node(head, 0));
     // printf("Length of List: %li\n", list_length(head));
     // printf("Count Occurrence: %li\n", list_count(head, 2));
     free_list(head);
