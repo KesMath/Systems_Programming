@@ -25,7 +25,7 @@ struct Node* get_nth_node(struct Node* head, size_t n);
 void swap_pair(struct Node* node1, struct Node* node2);
 struct Node* swap_node_pairs(struct Node *head);
 
-// FIXME (4 & 5) - semi working
+// FIXME (4) - removing at the head is causing use-after-free
 void remove_at_index(struct Node* head, size_t index);
 void add_at_index(struct Node* head, size_t index, size_t n);
 
@@ -161,14 +161,20 @@ void add_at_index(struct Node* head, size_t index, size_t n){
     else{
         struct Node* tmp = head;
         struct Node* previous = NULL;
+        struct Node* node = create_node(n);
 
         // traverse into target ptr in order to do incision
-        while(index > 1){
+        while(index > 1 && tmp != NULL){
             previous = tmp;
             tmp = tmp->next;
             index--;
         }
-        struct Node* node = create_node(n);
+        // when index exceeds linked list capacity, just add to tail
+        // optionally, can just check if index > list_length(head), break 
+        if (tmp == NULL){
+            previous->next = node;
+            return;
+        }
         previous->next = node;
         node->next = tmp;
     }
@@ -222,10 +228,14 @@ int main(void){
         tmp = node;
         i++;
     }
-
     // deleting an arbitrary node
     //print_list(head);
     // remove_at_index(head, 20);
+    // print_list(head);
+
+    // inserting an arbitrary node
+    // print_list(head);
+    // add_at_index(head, 10, 3100);
     // print_list(head);
 
     // swap node
@@ -241,9 +251,9 @@ int main(void){
     // print_list(head);
 
     //add at head
-    print_list(head);
-    add_at_head(head, 4);
-    print_list(head);
+    //print_list(head);
+    //add_at_head(head, 4);
+    //print_list(head);
 
     // other misc stats
     // printf("%p\n", get_nth_node(head, 0));
