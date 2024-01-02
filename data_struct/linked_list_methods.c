@@ -16,18 +16,17 @@ size_t list_count (struct Node *list, int search_val);
 struct Node* create_node(int value);
 void append_node(struct Node* node1, struct Node* node2);
 
-// FIXME (1) - add_to_head occurs only within stack frame but fails outside
-void add_at_head(struct Node* head, size_t n);
+void add_at_head(struct Node** head, size_t n);
 void add_at_tail(struct Node* head, size_t n);
 struct Node* get_nth_node(struct Node* head, size_t n);
 
-// FIXME (2 & 3) - swap occurs only within stack frame but fails outside
+// FIXME (1 & 2) - swap occurs only within stack frame but fails outside
 void swap_pair(struct Node* node1, struct Node* node2);
 struct Node* swap_node_pairs(struct Node *head);
 
-// FIXME (4) - removing at the head is causing use-after-free
+// FIXME (3) - removing at the head is causing use-after-free
 void remove_at_index(struct Node* head, size_t index);
-void add_at_index(struct Node* head, size_t index, size_t n);
+void add_at_index(struct Node** head, size_t index, size_t n);
 
 void free_list(struct Node* head);
 void print_list(struct Node* head);
@@ -154,12 +153,12 @@ void remove_at_index(struct Node* head, size_t index){
     printf("%p\n", head);
 }
 
-void add_at_index(struct Node* head, size_t index, size_t n){
+void add_at_index(struct Node** head, size_t index, size_t n){
     if(index == 0){
         add_at_head(head, n);
     }
     else{
-        struct Node* tmp = head;
+        struct Node* tmp = *head;
         struct Node* previous = NULL;
         struct Node* node = create_node(n);
 
@@ -208,13 +207,10 @@ void add_at_tail(struct Node* head, size_t n){
     append_node(tmp, node);
 }
 
-void add_at_head(struct Node* head, size_t n){
+void add_at_head(struct Node** head, size_t n){
     struct Node* node = create_node(n);
-    node->next = head;
-    head = node;
-    printf("%s\n", "new node set");
-    // FIXME: not sure why head is not updated when exiting the stack frame
-    print_list(head);
+    node->next = *head;
+    *head = node;
 }
 
 int main(void){
@@ -235,7 +231,8 @@ int main(void){
 
     // inserting an arbitrary node
     // print_list(head);
-    // add_at_index(head, 10, 3100);
+    // printf("%s\n", "***********");
+    // add_at_index(&head, 0, 3100);
     // print_list(head);
 
     // swap node
@@ -251,9 +248,10 @@ int main(void){
     // print_list(head);
 
     //add at head
-    //print_list(head);
-    //add_at_head(head, 4);
-    //print_list(head);
+    print_list(head);
+    printf("%s\n", "***********");
+    add_at_head(&head, 400);
+    print_list(head);
 
     // other misc stats
     // printf("%p\n", get_nth_node(head, 0));
