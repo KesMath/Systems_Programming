@@ -10,6 +10,19 @@ struct Node {
 	int value;
 };
 
+// ************* OBSERVATION *************
+// If we want to mutate/write the pre-existing state of the linked list (i.e. adding, removing, swapping nodes) and have them persist after function calls, we need to pass a pointer to this linked list (i.e. double pointer)
+// in cases, where we just want to read the state of a linked list (printing, freeing, counting), a normal pointer to the linked list will suffice!
+
+// From this observation, we can see that a Double pointer are to pointers what pointers are to deferenced values!
+// For if we want to modify the dereferenced values:
+// Assume method signature of func(*p), we call it like func(p), where p is a pointer
+
+// When we want to modify pointer state:
+// Assume method signature of func(**p), we call it like func(&p), where p is a pointer to a pointer
+// ***************************************
+
+
 size_t list_length (struct Node *list);
 size_t list_count (struct Node *list, int search_val);
 
@@ -236,8 +249,10 @@ int main(void){
     // print_list(head);
 
     // swap node
-    //swap_pair(head, head->next);
-    //print_list(head);
+    print_list(head);
+    printf("%s\n", "***********");
+    swap_pair(head, head->next);
+    print_list(head);
 
 
     //add at tail
@@ -248,10 +263,10 @@ int main(void){
     // print_list(head);
 
     //add at head
-    print_list(head);
-    printf("%s\n", "***********");
-    add_at_head(&head, 400);
-    print_list(head);
+    // print_list(head);
+    // printf("%s\n", "***********");
+    // add_at_head(&head, 400);
+    // print_list(head);
 
     // other misc stats
     // printf("%p\n", get_nth_node(head, 0));
