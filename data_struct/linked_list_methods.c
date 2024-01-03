@@ -37,8 +37,8 @@ struct Node* get_nth_node(struct Node* head, size_t n);
 void swap_pair(struct Node* node1, struct Node* node2);
 struct Node* swap_node_pairs(struct Node *head);
 
-// FIXME (3) - removing at the head is causing use-after-free
-void remove_at_index(struct Node* head, size_t index);
+
+void remove_at_index(struct Node** head, size_t index);
 void add_at_index(struct Node** head, size_t index, size_t n);
 
 void free_list(struct Node* head);
@@ -141,11 +141,10 @@ struct Node* swap_node_pairs(struct Node *head){
     return head;
 }
 
-void remove_at_index(struct Node* head, size_t index){
-    //FIXME: Use-after-free when index == 0?!
-    struct Node* tmp = head;
+void remove_at_index(struct Node** head, size_t index){
+    struct Node* tmp = *head;
     if (index == 0){
-        head = head->next;
+        *head = tmp->next;
     }
     else{
         struct Node* previous = NULL;
@@ -163,7 +162,6 @@ void remove_at_index(struct Node* head, size_t index){
     }
     // free orphaned node!!
     free(tmp);
-    printf("%p\n", head);
 }
 
 void add_at_index(struct Node** head, size_t index, size_t n){
@@ -238,9 +236,12 @@ int main(void){
         i++;
     }
     // deleting an arbitrary node
-    //print_list(head);
-    // remove_at_index(head, 20);
-    // print_list(head);
+    print_list(head);
+    printf("%s\n", "***********");
+    remove_at_index(&head, 0);
+    remove_at_index(&head, 0);
+    remove_at_index(&head, 0);
+    print_list(head);
 
     // inserting an arbitrary node
     // print_list(head);
@@ -249,10 +250,10 @@ int main(void){
     // print_list(head);
 
     // swap node
-    print_list(head);
-    printf("%s\n", "***********");
-    swap_pair(head, head->next);
-    print_list(head);
+    // print_list(head);
+    // printf("%s\n", "***********");
+    // swap_pair(head, head->next);
+    // print_list(head);
 
 
     //add at tail
@@ -269,9 +270,8 @@ int main(void){
     // print_list(head);
 
     // other misc stats
-    // printf("%p\n", get_nth_node(head, 0));
-    // printf("Length of List: %li\n", list_length(head));
-    // printf("Count Occurrence: %li\n", list_count(head, 2));
+    //printf("Length of List: %li\n", list_length(head));
+    //printf("Count Occurrence: %li\n", list_count(head, 2));
     free_list(head);
 
 }
