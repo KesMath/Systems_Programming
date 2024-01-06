@@ -22,6 +22,9 @@ struct Node {
 // Assume method signature of func(**p), we call it like func(&p), where p is a pointer to a pointer
 // ***************************************
 
+// REFERENCE
+// https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Pointers.html
+
 
 size_t list_length (struct Node *list);
 size_t list_count (struct Node *list, int search_val);
@@ -33,9 +36,10 @@ void add_at_head(struct Node** head, size_t n);
 void add_at_tail(struct Node* head, size_t n);
 struct Node* get_nth_node(struct Node* head, size_t n);
 
-// FIXME (1 & 2) - swap occurs only within stack frame but fails outside
-void swap_pair(struct Node* node1, struct Node* node2);
-struct Node* swap_node_pairs(struct Node *head);
+// swapping values for simplicity, not pointers!
+// refer to this article to read into swap pointers approach: https://www.prepbytes.com/blog/linked-list/swap-nodes-in-a-linked-list-without-swapping-data/
+void swap_values(struct Node* node1, struct Node* node2);
+void swap_adjacent_node_pairs(struct Node* head);
 
 
 void remove_at_index(struct Node** head, size_t index);
@@ -98,38 +102,33 @@ struct Node* get_nth_node(struct Node* head, size_t n){
     return tmp;
 }
 
-void swap_pair(struct Node* node1, struct Node* node2){
-    // printf("%p\n", node1);
-    // printf("%p\n", node2);
-    struct Node* tmp = node1;
-    node1 = node2;
-    node2 = tmp;
-    // printf("%p\n", node1);
-    // printf("%p\n", node2);
-    //print_list(node1);
-    //printf("%s\n", "next node");
-    //print_list(node2);
+// swapping values for simplicity, not pointers!
+void swap_values(struct Node* node1, struct Node* node2){
+    int tmp = node1->value;
+    node1->value = node2->value;
+    node2->value = tmp;
 }
 
-struct Node* swap_node_pairs(struct Node *head){
-    // Codewar Kata: Swap Node Pairs In Linked List
-    // https://www.codewars.com/kata/59c6f43c2963ecf6bf002252/train/c
+void swap_adjacent_pair_values(struct Node* head){
     struct Node* ptr = head;
     bool isEven = false;
 
     size_t len = list_length(head);
+    if (len == 0 || len == 1){
+        return;
+    }
     if (len % 2 == 0){
         isEven = true;
     }
     if (isEven){
         while(ptr != NULL){
-            swap_pair(ptr, ptr->next);
+            swap_values(ptr, ptr->next);
             ptr = ptr->next->next;
         }
     }
     else{
         while(ptr != NULL){
-            swap_pair(ptr, ptr->next);
+            swap_values(ptr, ptr->next);
             ptr = ptr->next->next;
             // eager check in order to prevent swapping with NULL ptr
             // recall that if len is odd, we only swap the first even pairs (up to and excluding the odd one) 
@@ -138,7 +137,7 @@ struct Node* swap_node_pairs(struct Node *head){
             }
         }
     }
-    return head;
+    //return head;
 }
 
 void remove_at_index(struct Node** head, size_t index){
@@ -229,19 +228,19 @@ int main(void){
 
     int i = 1;
     struct Node* tmp = head;
-    while(i <= 20){
+    while(i <= 21){
         struct Node* node = create_node(i);
         append_node(tmp, node);
         tmp = node;
-        i++;
+        ++i;
     }
     // deleting an arbitrary node
-    print_list(head);
-    printf("%s\n", "***********");
-    remove_at_index(&head, 0);
-    remove_at_index(&head, 0);
-    remove_at_index(&head, 0);
-    print_list(head);
+    // print_list(head);
+    // printf("%s\n", "***********");
+    // remove_at_index(&head, 0);
+    // remove_at_index(&head, 0);
+    // remove_at_index(&head, 0);
+    // print_list(head);
 
     // inserting an arbitrary node
     // print_list(head);
@@ -250,10 +249,10 @@ int main(void){
     // print_list(head);
 
     // swap node
-    // print_list(head);
-    // printf("%s\n", "***********");
-    // swap_pair(head, head->next);
-    // print_list(head);
+    print_list(head);
+    printf("%s\n", "***********");
+    swap_adjacent_pair_values(head);
+    print_list(head);
 
 
     //add at tail
@@ -270,7 +269,7 @@ int main(void){
     // print_list(head);
 
     // other misc stats
-    //printf("Length of List: %li\n", list_length(head));
+    printf("Length of List: %li\n", list_length(head));
     //printf("Count Occurrence: %li\n", list_count(head, 2));
     free_list(head);
 
