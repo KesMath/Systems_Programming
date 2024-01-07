@@ -27,13 +27,16 @@ struct Node {
 
 
 size_t list_length (struct Node *list);
+bool is_empty(struct Node* head);
 size_t list_count (struct Node *list, int search_val);
 
 struct Node* create_node(int value);
 void append_node(struct Node* node1, struct Node* node2);
 
 void add_at_head(struct Node** head, size_t n);
-void add_at_tail(struct Node* head, size_t n);
+void remove_at_head(struct Node** head); // aka pop() in Queue terms
+void add_at_tail(struct Node* head, size_t n); // aka push() in Stack/Queue terms
+void remove_at_tail(struct Node** head); // aka pop() in Stack terms
 struct Node* get_nth_node(struct Node* head, size_t n);
 
 // swapping values for simplicity, not pointers!
@@ -49,7 +52,6 @@ void free_list(struct Node* head);
 void print_list(struct Node* head);
 
 
-// returns the length of the list
 size_t list_length (struct Node *list){
     size_t cout = 0;
     struct Node *ptr = list; // creating copy of pointer to do computation within this stack frame so we do not actually mutate original pointer
@@ -60,6 +62,9 @@ size_t list_length (struct Node *list){
     return cout;
 }
 
+bool is_empty(struct Node* head){
+    return list_length(head) == 0;
+}
 
 // returns the number of occurences of search_val in list
 size_t list_count (struct Node *list, int search_val)
@@ -223,6 +228,15 @@ void add_at_head(struct Node** head, size_t n){
     *head = node;
 }
 
+void remove_at_tail(struct Node** head){
+    size_t len = list_length(*head);
+    remove_at_index(head, len - 1);
+}
+
+void remove_at_head(struct Node** head){
+    remove_at_index(head, 0);
+}
+
 int main(void){
     struct Node* head = create_node(0);
 
@@ -263,6 +277,7 @@ int main(void){
     //add at tail
     printf("\n%s\n", "Adding nodes to tail...");
     print_list(head);
+    printf("%s\n", "***********");
     add_at_tail(head, 4);
     add_at_tail(head, 5);
     add_at_tail(head, 6);
@@ -277,9 +292,25 @@ int main(void){
     add_at_head(&head, 400);
     print_list(head);
 
+    //remove at tail
+    printf("\n%s\n", "Popping from tail...");
+    print_list(head);
+    printf("%s\n", "***********");
+    remove_at_tail(&head);
+    remove_at_tail(&head);
+    print_list(head);
+
+    //remove at head
+    printf("\n%s\n", "Removing from head...");
+    print_list(head);
+    printf("%s\n", "***********");
+    remove_at_head(&head);
+    remove_at_head(&head);
+    print_list(head);
+
     // other misc stats
     printf("Length of List: %li\n", list_length(head));
-    printf("Count Occurrence of %i: %li\n", head->value, list_count(head, head->value));
+    printf("Count Occurrence of %i: %li\n", 1600, list_count(head, 1600));
     free_list(head);
     return 0;
 }
