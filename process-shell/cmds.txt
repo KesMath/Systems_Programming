@@ -1,0 +1,8 @@
+cat wish.c
+ls -l -a --author
+pwd
+cd ..
+pwd
+ls -all
+ls -l > out.log
+cat README.md
