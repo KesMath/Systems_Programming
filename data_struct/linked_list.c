@@ -234,21 +234,26 @@ int main(void){
         tmp = node;
         ++i;
     }
-    // deleting an arbitrary node
-    // print_list(head);
-    // printf("%s\n", "***********");
-    // remove_at_index(&head, 0);
-    // remove_at_index(&head, 0);
-    // remove_at_index(&head, 0);
-    // print_list(head);
+    //deleting an arbitrary node
+    printf("\n%s\n", "Deleting arbitrary nodes...");
+    print_list(head);
+    printf("%s\n", "***********");
+    remove_at_index(&head, 0);
+    remove_at_index(&head, 15);
+    remove_at_index(&head, 0);
+    print_list(head);
 
     // inserting an arbitrary node
-    // print_list(head);
-    // printf("%s\n", "***********");
-    // add_at_index(&head, 0, 3100);
-    // print_list(head);
+    printf("\n%s\n", "Inserting arbitrary nodes...");
+    print_list(head);
+    printf("%s\n", "***********");
+    add_at_index(&head, 0, 3200);
+    add_at_index(&head, 10, 1600);
+    add_at_index(&head, 10, 1600);
+    print_list(head);
 
     // swap node
+    printf("\n%s\n", "Swapping adjacent nodes...");
     print_list(head);
     printf("%s\n", "***********");
     swap_adjacent_pair_values(head);
@@ -256,21 +261,25 @@ int main(void){
 
 
     //add at tail
-    // print_list(head);
-    // add_at_tail(head, 4);
-    // add_at_tail(head, 5);
-    // add_at_tail(head, 6);
-    // print_list(head);
+    printf("\n%s\n", "Adding nodes to tail...");
+    print_list(head);
+    add_at_tail(head, 4);
+    add_at_tail(head, 5);
+    add_at_tail(head, 6);
+    print_list(head);
 
     //add at head
-    // print_list(head);
-    // printf("%s\n", "***********");
-    // add_at_head(&head, 400);
-    // print_list(head);
+    printf("\n%s\n", "Adding nodes to head...");
+    print_list(head);
+    printf("%s\n", "***********");
+    add_at_head(&head, 600);
+    add_at_head(&head, 400);
+    add_at_head(&head, 400);
+    print_list(head);
 
     // other misc stats
     printf("Length of List: %li\n", list_length(head));
-    //printf("Count Occurrence: %li\n", list_count(head, 2));
+    printf("Count Occurrence of %i: %li\n", head->value, list_count(head, head->value));
     free_list(head);
-
+    return 0;
 }
